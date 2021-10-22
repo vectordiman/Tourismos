@@ -30,18 +30,31 @@ namespace API
         {
             services.AddApplicationService(_config);
             services.AddControllers();
+            services.AddCors();
+            services.AddIdentityServices(_config);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseMiddleware<ExceptionMiddleware>();
-
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
+            app.UseCors(policy => policy.AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
+                .WithOrigins("https://localhost:4200"));
+
+            app.UseAuthentication();
+            
             app.UseAuthorization();
+
+            app.UseDefaultFiles();
+
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
