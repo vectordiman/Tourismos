@@ -11,7 +11,7 @@ namespace API.Entities
         public DateTime Created { get; set; } = DateTime.Now;
         public DateTime LastActive { get; set; } = DateTime.Now;
         public ICollection<Photo> Photos { get; set; }
-        
-        public ICollection<AppUserRole> UserRoles { get; set; }
+
+        public AppRole Role { get; set; }
     }
 }

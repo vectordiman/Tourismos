@@ -57,9 +57,6 @@ namespace API.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("AppRoleId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("text");
@@ -106,6 +103,9 @@ namespace API.Data.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("boolean");
 
+                    b.Property<int?>("RoleId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
 
@@ -118,8 +118,6 @@ namespace API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppRoleId");
-
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -127,22 +125,9 @@ namespace API.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
-                    b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("API.Entities.AppUserRole", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("UserId", "RoleId");
-
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles");
+                    b.ToTable("AspNetUsers");
                 });
 
             modelBuilder.Entity("API.Entities.Photo", b =>
@@ -241,6 +226,21 @@ namespace API.Data.Migrations
                     b.ToTable("AspNetUserLogins");
                 });
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
                     b.Property<int>("UserId")
@@ -262,28 +262,11 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
-                    b.HasOne("API.Entities.AppRole", null)
-                        .WithMany("Users")
-                        .HasForeignKey("AppRoleId");
-                });
-
-            modelBuilder.Entity("API.Entities.AppUserRole", b =>
-                {
                     b.HasOne("API.Entities.AppRole", "Role")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("API.Entities.AppUser", "User")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Users")
+                        .HasForeignKey("RoleId");
 
                     b.Navigation("Role");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("API.Entities.Photo", b =>
@@ -324,6 +307,21 @@ namespace API.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+                {
+                    b.HasOne("API.Entities.AppRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
                     b.HasOne("API.Entities.AppUser", null)
@@ -335,16 +333,12 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.AppRole", b =>
                 {
-                    b.Navigation("UserRoles");
-
                     b.Navigation("Users");
                 });
 
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
                     b.Navigation("Photos");
-
-                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }
