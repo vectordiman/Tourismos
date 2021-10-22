@@ -54,7 +54,7 @@ namespace API.Data.Migrations
                     LastName = table.Column<string>(type: "text", nullable: true),
                     Created = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     LastActive = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    AppRoleId = table.Column<int>(type: "integer", nullable: true),
+                    RoleId = table.Column<int>(type: "integer", nullable: true),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
@@ -74,8 +74,8 @@ namespace API.Data.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUsers_AspNetRoles_AppRoleId",
-                        column: x => x.AppRoleId,
+                        name: "FK_AspNetUsers_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -221,9 +221,9 @@ namespace API.Data.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_AppRoleId",
+                name: "IX_AspNetUsers_RoleId",
                 table: "AspNetUsers",
-                column: "AppRoleId");
+                column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
