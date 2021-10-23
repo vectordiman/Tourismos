@@ -137,26 +137,30 @@ namespace API.Data.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("AppUserId")
-                        .HasColumnType("integer");
-
-                    b.Property<bool>("IsApproved")
-                        .HasColumnType("boolean");
-
                     b.Property<bool>("IsMain")
                         .HasColumnType("boolean");
-
-                    b.Property<string>("PublicId")
-                        .HasColumnType("text");
 
                     b.Property<string>("Url")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId");
-
                     b.ToTable("Photos");
+                });
+
+            modelBuilder.Entity("AppUserPhoto", b =>
+                {
+                    b.Property<int>("PhotosId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UsersId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("PhotosId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("AppUserPhoto");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -269,15 +273,19 @@ namespace API.Data.Migrations
                     b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("API.Entities.Photo", b =>
+            modelBuilder.Entity("AppUserPhoto", b =>
                 {
-                    b.HasOne("API.Entities.AppUser", "AppUser")
-                        .WithMany("Photos")
-                        .HasForeignKey("AppUserId")
+                    b.HasOne("API.Entities.Photo", null)
+                        .WithMany()
+                        .HasForeignKey("PhotosId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AppUser");
+                    b.HasOne("API.Entities.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
