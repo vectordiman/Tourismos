@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API.Entities
 {
+    [Table("Tours")]
     public class Tour
     {
         public int Id { get; set; }

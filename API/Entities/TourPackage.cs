@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API.Entities
 {
+    [Table("TourPackages")]
     public class TourPackage
     {
         public int Id { get; set; }
@@ -13,9 +15,9 @@ namespace API.Entities
         public string Description { get; set; }
         public string Country { get; set; }
 
-        public ICollection<Tour> Tours;
-        public ICollection<Service> Services;
-        public ICollection<Photo> Photos;
-        public ICollection<Message> Messages;
+        public ICollection<Tour> Tours { get; set; }
+        public ICollection<Service> Services { get; set; }
+        public ICollection<Photo> Photos { get; set; }
+        public ICollection<Message> Messages { get; set; }
     }
 }

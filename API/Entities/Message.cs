@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API.Entities
 {
+    [Table("Messages")]
     public class Message
     {
         public int Id { get; set; }
@@ -20,6 +20,6 @@ namespace API.Entities
         //public bool SenderDeleted { get; set; }
         //public bool RecipientDeleted { get; set; }
 
-        public ICollection<TourPackage> TourPackages;
+        public ICollection<TourPackage> TourPackages { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20211023122934_PostgresInitial")]
+    [Migration("20211023221302_PostgresInitial")]
     partial class PostgresInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -132,6 +132,40 @@ namespace API.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("API.Entities.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Content")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("DateRead")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("RecipientId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("RecipientUsername")
+                        .HasColumnType("text");
+
+                    b.Property<int>("SenderId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("SenderUsername")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RecipientId");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("Messages");
+                });
+
             modelBuilder.Entity("API.Entities.Photo", b =>
                 {
                     b.Property<int>("Id")
@@ -150,6 +184,82 @@ namespace API.Data.Migrations
                     b.ToTable("Photos");
                 });
 
+            modelBuilder.Entity("API.Entities.Service", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Services");
+                });
+
+            modelBuilder.Entity("API.Entities.Tour", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<DateTime>("PurchaseDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("TourPackageId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TouristId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TourPackageId");
+
+                    b.HasIndex("TouristId");
+
+                    b.ToTable("Tours");
+                });
+
+            modelBuilder.Entity("API.Entities.TourPackage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Country")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("End")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("Start")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TourPackages");
+                });
+
             modelBuilder.Entity("AppUserPhoto", b =>
                 {
                     b.Property<int>("PhotosId")
@@ -162,7 +272,22 @@ namespace API.Data.Migrations
 
                     b.HasIndex("UsersId");
 
-                    b.ToTable("AppUserPhoto");
+                    b.ToTable("AppUserPhotos");
+                });
+
+            modelBuilder.Entity("MessageTourPackage", b =>
+                {
+                    b.Property<int>("MessagesId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TourPackagesId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("MessagesId", "TourPackagesId");
+
+                    b.HasIndex("TourPackagesId");
+
+                    b.ToTable("TourPackageMessages");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -266,6 +391,66 @@ namespace API.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("PhotoService", b =>
+                {
+                    b.Property<int>("PhotosId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ServicesId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("PhotosId", "ServicesId");
+
+                    b.HasIndex("ServicesId");
+
+                    b.ToTable("ServicePhotos");
+                });
+
+            modelBuilder.Entity("PhotoTourPackage", b =>
+                {
+                    b.Property<int>("PhotosId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TourPackagesId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("PhotosId", "TourPackagesId");
+
+                    b.HasIndex("TourPackagesId");
+
+                    b.ToTable("TourPackagePhotos");
+                });
+
+            modelBuilder.Entity("ServiceTour", b =>
+                {
+                    b.Property<int>("ServicesId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ToursId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ServicesId", "ToursId");
+
+                    b.HasIndex("ToursId");
+
+                    b.ToTable("TourServices");
+                });
+
+            modelBuilder.Entity("ServiceTourPackage", b =>
+                {
+                    b.Property<int>("ServicesId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TourPackagesId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ServicesId", "TourPackagesId");
+
+                    b.HasIndex("TourPackagesId");
+
+                    b.ToTable("TourPackageServices");
+                });
+
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
                     b.HasOne("API.Entities.AppRole", "Role")
@@ -273,6 +458,44 @@ namespace API.Data.Migrations
                         .HasForeignKey("RoleId");
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("API.Entities.Message", b =>
+                {
+                    b.HasOne("API.Entities.AppUser", "Recipient")
+                        .WithMany("MessagesReceived")
+                        .HasForeignKey("RecipientId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.AppUser", "Sender")
+                        .WithMany("MessagesSent")
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Recipient");
+
+                    b.Navigation("Sender");
+                });
+
+            modelBuilder.Entity("API.Entities.Tour", b =>
+                {
+                    b.HasOne("API.Entities.TourPackage", "TourPackage")
+                        .WithMany("Tours")
+                        .HasForeignKey("TourPackageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.AppUser", "Tourist")
+                        .WithMany("Tours")
+                        .HasForeignKey("TouristId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Tourist");
+
+                    b.Navigation("TourPackage");
                 });
 
             modelBuilder.Entity("AppUserPhoto", b =>
@@ -286,6 +509,21 @@ namespace API.Data.Migrations
                     b.HasOne("API.Entities.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MessageTourPackage", b =>
+                {
+                    b.HasOne("API.Entities.Message", null)
+                        .WithMany()
+                        .HasForeignKey("MessagesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.TourPackage", null)
+                        .WithMany()
+                        .HasForeignKey("TourPackagesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -341,9 +579,83 @@ namespace API.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("PhotoService", b =>
+                {
+                    b.HasOne("API.Entities.Photo", null)
+                        .WithMany()
+                        .HasForeignKey("PhotosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.Service", null)
+                        .WithMany()
+                        .HasForeignKey("ServicesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PhotoTourPackage", b =>
+                {
+                    b.HasOne("API.Entities.Photo", null)
+                        .WithMany()
+                        .HasForeignKey("PhotosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.TourPackage", null)
+                        .WithMany()
+                        .HasForeignKey("TourPackagesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ServiceTour", b =>
+                {
+                    b.HasOne("API.Entities.Service", null)
+                        .WithMany()
+                        .HasForeignKey("ServicesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.Tour", null)
+                        .WithMany()
+                        .HasForeignKey("ToursId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ServiceTourPackage", b =>
+                {
+                    b.HasOne("API.Entities.Service", null)
+                        .WithMany()
+                        .HasForeignKey("ServicesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.TourPackage", null)
+                        .WithMany()
+                        .HasForeignKey("TourPackagesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("API.Entities.AppRole", b =>
                 {
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("API.Entities.AppUser", b =>
+                {
+                    b.Navigation("MessagesReceived");
+
+                    b.Navigation("MessagesSent");
+
+                    b.Navigation("Tours");
+                });
+
+            modelBuilder.Entity("API.Entities.TourPackage", b =>
+                {
+                    b.Navigation("Tours");
                 });
 #pragma warning restore 612, 618
         }
