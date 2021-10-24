@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 using API.Data;
 using API.Helpers;
 using API.Interfaces;
@@ -19,6 +20,12 @@ namespace API.Extensions
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<LogUserActivity>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+            
+            services.AddMvc().AddJsonOptions(o => {
+                o.JsonSerializerOptions
+                .ReferenceHandler = ReferenceHandler.Preserve; 
+            });
+
             services.AddDbContext<DataContext>(options =>
             {
                 var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
