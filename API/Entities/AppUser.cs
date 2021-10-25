@@ -10,8 +10,14 @@ namespace API.Entities
         public string LastName { get; set; }
         public DateTime Created { get; set; } = DateTime.Now;
         public DateTime LastActive { get; set; } = DateTime.Now;
-        public ICollection<Photo> Photos { get; set; }
-        
         public AppRole Role { get; set; }
+
+        public ICollection<Photo> Photos { get; set; }
+
+        public ICollection<Message> MessagesSent { get; set; }
+        public ICollection<Message> MessagesReceived { get; set; }
+
+        public ICollection<Tour> Tours { get; set; }
     }
+
 }

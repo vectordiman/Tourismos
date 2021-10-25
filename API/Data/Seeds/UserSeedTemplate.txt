@@ -1,0 +1,18 @@
+[
+  '{{repeat(10)}}',
+  {
+    UserName: '{{firstName("male")}}',
+    Name: function() { return this.UserName; },
+    LastName: '{{surname()}}',
+    Created: '{{date(new Date(2018, 0, 1), new Date(2020, 1, 1), "YYYY-MM-ddThh:mm:ss.ffff")}}',
+    LastActive: '{{date(new Date(2020, 2, 1), new Date(2021, 10, 1), "YYYY-MM-ddThh:mm:ss.ffff")}}',
+    Photos: [
+      {
+        Url: function(num){
+          return 'https://randomuser.me/api/portraits/men/' + num.integer(1,99) + '.jpg';
+        },
+        IsMain: true
+      }
+    ]
+  }
+]
