@@ -9,9 +9,13 @@ import {Router} from "@angular/router";
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  constructor(public accountService: AccountService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  logout() {
+    this.accountService.logout();
+    this.router.navigateByUrl('/');
+  }
 }
