@@ -12,6 +12,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 import { TextInputComponent } from './_forms/text-input/text-input.component';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { TextInputComponent } from './_forms/text-input/text-input.component';
     NavComponent,
     RegisterComponent,
     LoginComponent,
-    TextInputComponent
+    TextInputComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -29,8 +32,11 @@ import { TextInputComponent } from './_forms/text-input/text-input.component';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    BsDropdownModule,
-    ReactiveFormsModule
+    BsDropdownModule.forRoot(),
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toastr-bottom-right'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
