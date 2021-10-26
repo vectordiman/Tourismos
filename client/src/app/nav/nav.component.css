@@ -1,0 +1,16 @@
+.btn {
+  box-shadow: none;
+  height: 40px;
+  width: 90px;
+}
+
+.dropdown-toggle, .dropdown-item {
+  cursor: pointer;
+}
+
+.account-img {
+  max-height: 45px;
+  border: 2px solid white;
+  display: inline;
+  border-radius: 50%;
+}
