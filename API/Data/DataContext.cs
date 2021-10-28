@@ -13,6 +13,7 @@ namespace API.Data
         }
 
         public DbSet<Photo> Photos { get; set; }
+        public DbSet<TourPackage> TourPackages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
