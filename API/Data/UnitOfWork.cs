@@ -13,6 +13,7 @@ namespace API.Data
         }
 
         public IUserRepository UserRepository => new UserRepository(_context);
+        public ITourPackageRepository TourPackageRepository => new TourPackageRepository(_context);
 
         public async Task<bool> Complete()
         {
