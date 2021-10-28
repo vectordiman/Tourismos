@@ -45,5 +45,22 @@ namespace API.Data
             await userManager.CreateAsync(admin, "Pa$$w0rd");
             await userManager.AddToRoleAsync(admin, "Admin");
         }
+
+        public static async Task SeedTourPackages(DataContext context)
+        {
+            if (await context.TourPackages.AnyAsync()) return;
+
+            var packageData = await System.IO.File.ReadAllTextAsync("Data/Seeds/TourPackageSeedData.json");
+            var packages = JsonSerializer.Deserialize<List<TourPackage>>(packageData);
+            if (packages == null) return;
+
+            foreach (var package in packages)
+            {
+                await context.TourPackages.AddAsync(package);
+            }
+
+            await context.SaveChangesAsync();
+
+        }
     }
 }
