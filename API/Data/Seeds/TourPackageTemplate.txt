@@ -1,0 +1,19 @@
+[
+  '{{repeat(20)}}',
+  {
+    Name: '{{lorem(4, "words")}}',
+    Price: '{{integer(100, 5000)}}',
+    Start: '{{date(new Date(2018, 0, 1), new Date(2020, 1, 1), "YYYY-MM-ddThh:mm:ss.ffff")}}',
+    End: '{{date(new Date(2020, 2, 1), new Date(2021, 10, 1), "YYYY-MM-ddThh:mm:ss.ffff")}}',
+    Description: '{{lorem(4, "paragraphs")}}',
+    Country: '{{country()}}',
+    Photos: [
+      {
+        Url: function(num){
+          return 'https://picsum.photos/id/' + num.integer(100, 600) + '/1920/1080';
+        },
+        IsMain: true
+      }
+    ]
+  }
+]
