@@ -9,11 +9,14 @@ import { NavComponent } from './nav/nav.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ToastrModule } from 'ngx-toastr';
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
+import {ErrorInterceptor} from "./_interceptors/error.interceptor";
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { ToastrModule } from 'ngx-toastr';
     RegisterComponent,
     LoginComponent,
     TextInputComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    TestErrorsComponent,
+    ServerErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -35,10 +40,12 @@ import { ToastrModule } from 'ngx-toastr';
     BsDropdownModule.forRoot(),
     ReactiveFormsModule,
     ToastrModule.forRoot({
-      positionClass: 'toastr-bottom-right'
-    })
+      positionClass: 'toast-bottom-right'
+    }),
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
