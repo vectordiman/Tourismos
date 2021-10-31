@@ -17,6 +17,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import {ErrorInterceptor} from "./_interceptors/error.interceptor";
+import { TourPackageCardComponent } from './tour_packages/tour-package-card/tour-package-card.component';
+import { TourPackageListComponent } from './tour_packages/tour-package-list/tour-package-list.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import {ErrorInterceptor} from "./_interceptors/error.interceptor";
     TextInputComponent,
     NotFoundComponent,
     TestErrorsComponent,
-    ServerErrorComponent
+    ServerErrorComponent,
+    TourPackageCardComponent,
+    TourPackageListComponent
   ],
   imports: [
     BrowserModule,
