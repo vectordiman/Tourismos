@@ -6,6 +6,8 @@ namespace API.Interfaces
     {
         IUserRepository UserRepository { get; }
 
+        ITourPackageRepository TourPackageRepository { get; }
+
         Task<bool> Complete();
 
         bool HasChanges();
