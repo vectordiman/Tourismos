@@ -13,5 +13,7 @@ namespace API.Interfaces
         void DeletePackage(TourPackage package);
 
         Task<IEnumerable<TourPackage>> GetTourPackagesAsync();
+
+        Task<TourPackage> GetTourPackage(int id);
     }
 }
