@@ -21,6 +21,12 @@ namespace API.Data
             throw new NotImplementedException();
         }
 
+        public async Task<TourPackage> GetTourPackage(int id)
+        {
+            return await _context.TourPackages
+                .Include(p => p.Photos).SingleOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task<IEnumerable<TourPackage>> GetTourPackagesAsync()
         {
             return await _context.TourPackages.Include(p => p.Photos).ToListAsync();

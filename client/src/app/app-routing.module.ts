@@ -6,11 +6,15 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
 import {TestErrorsComponent} from "./errors/test-errors/test-errors.component";
 import {ServerErrorComponent} from "./errors/server-error/server-error.component";
 import {HomeComponent} from "./home/home.component";
+import { TourPackageListComponent } from './tour_packages/tour-package-list/tour-package-list.component';
+import { TourPackageDetailComponent } from './tour_packages/tour-package-detail/tour-package-detail.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'trips', component: TourPackageListComponent},
+  {path: 'trips/:id', component: TourPackageDetailComponent},
   {path: 'not-found', component: NotFoundComponent},
   {path: 'errors', component: TestErrorsComponent},
   {path: 'not-found', component: NotFoundComponent},

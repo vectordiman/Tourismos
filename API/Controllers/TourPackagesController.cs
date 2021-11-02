@@ -26,5 +26,13 @@ namespace API.Controllers
             var trips = _mapper.Map<IEnumerable<TripDto>>(packages);
             return Ok(trips.ToArray());
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<TripDto>> GetTourPackage(int id)
+        {
+            var package = await _unitOfWork.TourPackageRepository.GetTourPackage(id);
+            var trip = _mapper.Map<TripDto>(package);
+            return Ok(trip);
+        }
     }
 }
