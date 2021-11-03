@@ -20,6 +20,7 @@ import {ErrorInterceptor} from "./_interceptors/error.interceptor";
 import { TourPackageCardComponent } from './tour_packages/tour-package-card/tour-package-card.component';
 import { TourPackageListComponent } from './tour_packages/tour-package-list/tour-package-list.component';
 import { TourPackageDetailComponent } from './tour_packages/tour-package-detail/tour-package-detail.component';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { TourPackageDetailComponent } from './tour_packages/tour-package-detail/
     ServerErrorComponent,
     TourPackageCardComponent,
     TourPackageListComponent,
-    TourPackageDetailComponent
+    TourPackageDetailComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,
