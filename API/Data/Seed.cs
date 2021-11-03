@@ -32,9 +32,6 @@ namespace API.Data
 
             foreach (var user in users)
             {
-                // Temporary solution.
-                user.Role = roles[0];
-                //
                 user.UserName = user.UserName.ToLower();
                 await userManager.CreateAsync(user, "Pa$$w0rd");
                 await userManager.AddToRoleAsync(user, "Client");
@@ -42,10 +39,7 @@ namespace API.Data
 
             var admin = new AppUser
             {
-                UserName = "admin",
-                // Temporary solution.
-                Role = roles[1]
-                //
+                UserName = "admin"
             };
 
             await userManager.CreateAsync(admin, "Pa$$w0rd");
