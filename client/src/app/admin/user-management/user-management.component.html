@@ -1,0 +1,16 @@
+<div class="row">
+    <table class="table">
+        <tr>
+            <th style="width: 30%"></th>
+            <th style="width: 40%"></th>
+            <th style="width: 30%"></th>
+        </tr>
+        <tr *ngFor="let user of users">
+            <td>{{user?.username}}</td>
+            <td>{{user?.role}}</td>
+            <td><button class="btn btn-info">
+                Edit role
+            </button></td>
+        </tr>
+    </table>
+</div>
