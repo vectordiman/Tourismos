@@ -29,21 +29,21 @@ namespace API.Controllers
                 .Select(u => new
                 {
                     u.Id,
-                    UserName = u.UserName,
+                    Username = u.UserName,
                     Role = u.UserRoles.Select(r => r.Role.Name).SingleOrDefault()
                 })
                 .ToListAsync();
                  
 
-            return Ok(users);
+            return Ok(users.ToArray());
         }
 
-        /*
+        
         [Authorize(Policy = "RequireAdminRole")]
-        [HttpPost("edit-roles/{username}")]
-        public async Task<ActionResult> EditRoles(string username, [FromQuery] string roles)
+        [HttpGet("edit-role/{username}")]
+        public async Task<IActionResult> EditRoles(string username, [FromQuery] string role)
         {
-            var selectedRoles = roles.Split(",").ToArray();
+            var selectedRoles = new string[] { role };
             
             var user = await _userManager.FindByNameAsync(username);
 
@@ -63,6 +63,6 @@ namespace API.Controllers
 
             return Ok(await _userManager.GetRolesAsync(user));
         }
-        */
+        
     }
 }
