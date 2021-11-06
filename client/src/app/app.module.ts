@@ -10,10 +10,8 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
-import { ToastrModule } from 'ngx-toastr';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import {ErrorInterceptor} from "./_interceptors/error.interceptor";
@@ -21,6 +19,10 @@ import { TourPackageCardComponent } from './tour_packages/tour-package-card/tour
 import { TourPackageListComponent } from './tour_packages/tour-package-list/tour-package-list.component';
 import { TourPackageDetailComponent } from './tour_packages/tour-package-detail/tour-package-detail.component';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { SharedModule } from './_modules/shared/shared.module';
+import { JwtInterceptor } from './_interceptors/jwt.interceptor';
+import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
     TourPackageCardComponent,
     TourPackageListComponent,
     TourPackageDetailComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    UserManagementComponent,
+    RolesModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,14 +49,12 @@ import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    BsDropdownModule.forRoot(),
     ReactiveFormsModule,
-    ToastrModule.forRoot({
-      positionClass: 'toast-bottom-right'
-    }),
+    SharedModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })
