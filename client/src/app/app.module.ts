@@ -54,7 +54,7 @@ import { UserMessagesComponent } from './user-messages/user-messages.component';
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

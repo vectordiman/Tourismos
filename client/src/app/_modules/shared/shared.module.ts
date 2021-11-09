@@ -4,6 +4,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ToastrModule } from 'ngx-toastr';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import {TimeagoModule} from "ngx-timeago";
 
 
 @NgModule({
@@ -16,11 +17,13 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     }),
     TabsModule.forRoot(),
     ModalModule.forRoot(),
+    TimeagoModule.forRoot(),
   ],
   exports: [
     BsDropdownModule,
     ToastrModule,
-    TabsModule
+    TabsModule,
+    TimeagoModule
   ]
 })
 export class SharedModule { }

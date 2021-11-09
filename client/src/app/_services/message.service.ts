@@ -26,7 +26,7 @@ export class MessageService {
       accessTokenFactory: () => user.token
     }).withAutomaticReconnect().build();
 
-    this.hubConnection.start().catch(error => console.log(error)).finally(() => this.busyService.idle());
+    this.hubConnection.start().catch(error => console.log(error));
 
     this.hubConnection.on('ReceiveMessageThread', messages => {
       this.messageThreadSource.next(messages);
