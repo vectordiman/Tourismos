@@ -24,6 +24,7 @@ import { SharedModule } from './_modules/shared/shared.module';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 import { FooterComponent } from './footer/footer.component';
+import { UserMessagesComponent } from './user-messages/user-messages.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { FooterComponent } from './footer/footer.component';
     UserManagementComponent,
     RolesModalComponent,
     FooterComponent,
+    UserMessagesComponent,
   ],
   imports: [
     BrowserModule,
