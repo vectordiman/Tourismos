@@ -23,6 +23,7 @@ import { UserManagementComponent } from './admin/user-management/user-management
 import { SharedModule } from './_modules/shared/shared.module';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
     AdminPanelComponent,
     UserManagementComponent,
     RolesModalComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
