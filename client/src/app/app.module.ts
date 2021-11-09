@@ -23,6 +23,8 @@ import { UserManagementComponent } from './admin/user-management/user-management
 import { SharedModule } from './_modules/shared/shared.module';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
+import { TourPackageCreationComponent } from './admin/tour-package-creation/tour-package-creation.component';
+import { DateInputComponent } from './_forms/date-input/date-input.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
     AdminPanelComponent,
     UserManagementComponent,
     RolesModalComponent,
+    TourPackageCreationComponent,
+    DateInputComponent,
   ],
   imports: [
     BrowserModule,
