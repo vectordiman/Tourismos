@@ -25,6 +25,8 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 import { TourPackageCreationComponent } from './admin/tour-package-creation/tour-package-creation.component';
 import { DateInputComponent } from './_forms/date-input/date-input.component';
+import { FooterComponent } from './footer/footer.component';
+import { UserMessagesComponent } from './user-messages/user-messages.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { DateInputComponent } from './_forms/date-input/date-input.component';
     RolesModalComponent,
     TourPackageCreationComponent,
     DateInputComponent,
+    FooterComponent,
+    UserMessagesComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,7 @@ import { DateInputComponent } from './_forms/date-input/date-input.component';
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
