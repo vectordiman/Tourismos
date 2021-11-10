@@ -1,0 +1,37 @@
+<form [formGroup]="packageCreationForm" (ngSubmit)="packageCreationForm.valid && createPackage()" autocomplete="off">
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <app-text-input [formControl]='$any(packageCreationForm).controls["name"]' [label]='"Package name"'>
+        </app-text-input>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Start date</label>
+        <app-date-input [formControl]='$any(packageCreationForm).controls["start"]' [label]='"Start"'></app-date-input>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">End date</label>
+        <app-date-input [formControl]='$any(packageCreationForm).controls["end"]' [label]='"End"'></app-date-input>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Price</label>
+        <app-text-input [formControl]='$any(packageCreationForm).controls["price"]' [label]='"Price"' [type]='"number"'>
+        </app-text-input>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Country</label>
+        <app-text-input [formControl]='$any(packageCreationForm).controls["country"]' [label]='"Country"'>
+        </app-text-input>
+    </div>
+
+    <div class="row" *ngIf="validationErrors.length > 0">
+        <ul class="text-danger">
+          <li *ngFor="let error of validationErrors">
+            {{error}}
+          </li>
+        </ul>
+      </div>
+
+    <div class="form-group text-center">
+        <button [disabled]='!packageCreationForm.valid' class="btn btn-success mr-2" type="submit">Create</button>
+      </div>
+</form>

@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
+using API.Entities;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +34,14 @@ namespace API.Controllers
         {
             var package = await _unitOfWork.TourPackageRepository.GetTourPackage(id);
             var trip = _mapper.Map<TripDto>(package);
+            return Ok(trip);
+        }
+
+        [HttpPost()]
+        public async Task<ActionResult<TripDto>> CreatePackage(TourPackage package)
+        {
+            var entity = await _unitOfWork.TourPackageRepository.CreatePackage(package);
+            var trip = _mapper.Map<TripDto>(entity);
             return Ok(trip);
         }
     }

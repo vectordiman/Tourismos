@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Entities;
 using API.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace API.Data
 {
@@ -14,6 +16,12 @@ namespace API.Data
         public TourPackageRepository(DataContext context)
         {
             _context = context;
+        }
+
+        public async Task<TourPackage> CreatePackage(TourPackage package)
+        {
+            var entry = await _context.TourPackages.AddAsync(package);
+            return entry.Entity;
         }
 
         public void DeletePackage(TourPackage package)

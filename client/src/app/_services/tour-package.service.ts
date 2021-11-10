@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { TourPackage } from '../_models/tour-package';
 
@@ -18,5 +19,10 @@ export class TourPackageService {
 
   getTourPackage(id: string): Observable<TourPackage> {
     return this.http.get<TourPackage>(this.baseUrl + 'tourpackages/' + id);
+  }
+
+  createTourPackage(model: TourPackage) {
+    console.log(model);
+    return this.http.post<TourPackage>(this.baseUrl + 'tourpackages', model);
   }
 }

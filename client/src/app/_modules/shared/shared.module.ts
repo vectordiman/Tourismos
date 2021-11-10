@@ -4,6 +4,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ToastrModule } from 'ngx-toastr';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import {TimeagoModule} from "ngx-timeago";
 
 
@@ -17,12 +18,14 @@ import {TimeagoModule} from "ngx-timeago";
     }),
     TabsModule.forRoot(),
     ModalModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     TimeagoModule.forRoot(),
   ],
   exports: [
     BsDropdownModule,
     ToastrModule,
     TabsModule,
+    BsDatepickerModule,
     TimeagoModule
   ]
 })
