@@ -6,6 +6,7 @@ import {Member} from "../_models/member";
 import {User} from "../_models/user";
 import {map, take} from "rxjs/operators";
 import {of} from "rxjs";
+import {Photo} from "../_models/photo";
 
 @Injectable({
   providedIn: 'root'
@@ -42,10 +43,6 @@ export class MemberService {
         this.members[index] = member;
       })
     )
-  }
-
-  addMainPhoto() {
-    return this.http.post(this.baseUrl + 'users/add-main-photo', {});
   }
 
   deletePhoto(photoId: number) {

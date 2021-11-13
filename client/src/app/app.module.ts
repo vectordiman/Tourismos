@@ -32,6 +32,7 @@ import { UserProfileEditComponent } from './user-profile/user-profile-edit/user-
 import { PhotoEditorComponent } from './user-profile/photo-editor/photo-editor.component';
 import { UserProfileComponent } from './user-profile/user-profile/user-profile.component';
 import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
+import {FileUploadModule} from "ng2-file-upload";
 
 @NgModule({
   declarations: [
@@ -68,7 +69,7 @@ import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.c
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    SharedModule,
+    SharedModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

@@ -6,6 +6,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import {TimeagoModule} from "ngx-timeago";
+import {FileUploadModule} from "ng2-file-upload";
 
 
 @NgModule({
@@ -20,13 +21,15 @@ import {TimeagoModule} from "ngx-timeago";
     ModalModule.forRoot(),
     BsDatepickerModule.forRoot(),
     TimeagoModule.forRoot(),
+    FileUploadModule,
   ],
   exports: [
     BsDropdownModule,
     ToastrModule,
     TabsModule,
     BsDatepickerModule,
-    TimeagoModule
+    TimeagoModule,
+    FileUploadModule
   ]
 })
 export class SharedModule { }

@@ -1,0 +1,15 @@
+<div class="header form-inline">
+<div class="rectangle mr-3" style="width: 20px; height: 13px; background-color: cornflowerblue; border-radius: 30%"></div>
+<h2>Profile</h2>
+</div>
+<div class="row mt-2">
+  <div class="col-3">
+    <div class="card">
+      <img src="{{member?.photoUrl || './assets/user.png' }}" alt="{{member?.name}} + {{member?.lastName}}" class="card-img-top img-thumbnail">
+    </div>
+  </div>
+  <div class="col-8">
+    <app-user-profile-detail></app-user-profile-detail>
+  </div>
+</div>
+<app-photo-editor [(member)]="member"></app-photo-editor>
