@@ -44,11 +44,11 @@ export class MemberService {
     )
   }
 
-  addMainPhoto(photoId: number) {
+  addMainPhoto() {
     return this.http.post(this.baseUrl + 'users/add-main-photo', {});
   }
 
-  deleteMainPhoto(photoId: number) {
-    return this.http.delete(this.baseUrl + 'users/delete-main-photo', {});
+  deletePhoto(photoId: number) {
+    return this.http.delete(this.baseUrl + 'users/delete-photo/' + photoId, {});
   }
 }
