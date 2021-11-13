@@ -27,6 +27,11 @@ import { TourPackageCreationComponent } from './admin/tour-package-creation/tour
 import { DateInputComponent } from './_forms/date-input/date-input.component';
 import { FooterComponent } from './footer/footer.component';
 import { UserMessagesComponent } from './user-messages/user-messages.component';
+import { UserProfileDetailComponent } from './user-profile/user-profile-detail/user-profile-detail.component';
+import { UserProfileEditComponent } from './user-profile/user-profile-edit/user-profile-edit.component';
+import { PhotoEditorComponent } from './user-profile/photo-editor/photo-editor.component';
+import { UserProfileComponent } from './user-profile/user-profile/user-profile.component';
+import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +55,11 @@ import { UserMessagesComponent } from './user-messages/user-messages.component';
     DateInputComponent,
     FooterComponent,
     UserMessagesComponent,
+    UserProfileDetailComponent,
+    UserProfileEditComponent,
+    PhotoEditorComponent,
+    UserProfileComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
