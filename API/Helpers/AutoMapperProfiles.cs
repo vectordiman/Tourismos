@@ -10,10 +10,12 @@ namespace API.Helpers
         public AutoMapperProfiles()
         {
             CreateMap<RegisterDto, AppUser>();
+            CreateMap<UserUpdateDto, AppUser>();
+            CreateMap<Photo, PhotoDto>();
             CreateMap<TourPackage, TripDto>()
-            .ForMember(dest => dest.PhotoUrl,
-                opt => opt.MapFrom(src => 
-                    src.Photos.FirstOrDefault(x => x.IsMain).Url));
+                .ForMember(dest => dest.PhotoUrl,
+                    opt => opt.MapFrom(src =>
+                        src.Photos.FirstOrDefault(x => x.IsMain).Url));
             CreateMap<Message, MessageDto>()
                 .ForMember(dest => dest.SenderPhotoUrl,
                     opt => opt.MapFrom(
@@ -21,7 +23,10 @@ namespace API.Helpers
                 .ForMember(dest => dest.RecipientPhotoUrl,
                     opt => opt.MapFrom(
                         src => src.Recipient.Photos.FirstOrDefault(x => x.IsMain).Url));
-            CreateMap<UserUpdateDto, AppUser>();
+            CreateMap<AppUser, UserDto>()
+                .ForMember(dest => dest.PhotoUrl,
+                    opt => opt.MapFrom(
+                        src => src.Photos.FirstOrDefault(x => x.IsMain).Url));
         }
     }
 }

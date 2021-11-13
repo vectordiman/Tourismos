@@ -30,11 +30,12 @@ namespace API.Controllers
         {
             return Ok(await _unitOfWork.UserRepository.GetUsersAsync());
         }
-        
-        [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<AppUser>>> GetUserById(int id)
+
+        [HttpGet("{username}", Name = "GetUser")]
+        public async Task<ActionResult<UserDto>> GetUser(string username)
         {
-            return Ok(await _unitOfWork.UserRepository.GetUserByIdAsync(id));
+            var isCurrentUser = User.GetUsername() == username;
+            return await _unitOfWork.UserRepository.GetUserAsync(username, isCurrentUser);
         }
         
         [HttpPut]
@@ -63,7 +64,8 @@ namespace API.Controllers
             var photo = new Photo
             {
                 Url = result.SecureUrl.AbsoluteUri,
-                PublicId = result.PublicId
+                PublicId = result.PublicId,
+                IsMain = true
             };
             
             user.Photos.Add(photo);
