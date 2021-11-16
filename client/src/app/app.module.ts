@@ -28,6 +28,7 @@ import { DateInputComponent } from './_forms/date-input/date-input.component';
 import { FooterComponent } from './footer/footer.component';
 import { UserMessagesComponent } from './user-messages/user-messages.component';
 import { HasRoleDirective } from './_directives/has-role.directive';
+import { TourPackageEditComponent } from './tour_packages/tour-package-edit/tour-package-edit.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { HasRoleDirective } from './_directives/has-role.directive';
     FooterComponent,
     UserMessagesComponent,
     HasRoleDirective,
+    TourPackageEditComponent,
   ],
   imports: [
     BrowserModule,

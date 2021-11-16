@@ -1,0 +1,36 @@
+<div class="container" *ngIf="tourPackage">
+    <form [formGroup]="editTourForm" (ngSubmit)="editTourForm.valid && updatePackage()" autocomplete="off">
+        <fieldset>
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <app-text-input [formControl]='$any(editTourForm).controls["name"]' [label]='"Package name"'></app-text-input>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Start date</label>
+                <app-date-input [formControl]='$any(editTourForm).controls["start"]' [label]='"Start"'></app-date-input>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">End date</label>
+                <app-date-input [formControl]='$any(editTourForm).controls["end"]' [label]='"End"'></app-date-input>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Price</label>
+                <app-text-input [formControl]='$any(editTourForm).controls["price"]' [label]='"Price"' [type]='"number"'>
+                </app-text-input>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Country</label>
+                <app-text-input [formControl]='$any(editTourForm).controls["country"]' [label]='"Country"'>
+                </app-text-input>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" [formControl]='$any(editTourForm).controls["description"]' cols="30" rows="10"></textarea>
+            </div>
+        </fieldset>
+
+        <div class="form-group text-center">
+            <button [disabled]='!editTourForm.valid' class="btn btn-success mr-2" type="submit">Save changes</button>
+          </div>
+    </form>
+</div>

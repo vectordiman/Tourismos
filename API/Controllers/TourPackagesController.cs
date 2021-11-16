@@ -44,5 +44,15 @@ namespace API.Controllers
             var trip = _mapper.Map<TripDto>(entity);
             return Ok(trip);
         }
+
+        [HttpPut]
+        public async Task<ActionResult> UpdatePackage(TourPackage package)
+        {
+            _unitOfWork.TourPackageRepository.Update(package);
+
+            if (await _unitOfWork.Complete()) return NoContent();
+
+            return BadRequest();
+        }
     }
 }

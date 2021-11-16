@@ -42,7 +42,7 @@ namespace API.Data
 
         public void Update(TourPackage package)
         {
-            throw new NotImplementedException();
+            _context.TourPackages.Update(package);
         }
     }
 }
