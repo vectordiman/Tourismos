@@ -1,69 +1,80 @@
-<div class="container" *ngIf="package">
-    <div class="row">
-        <!-- Product main image -->
-        <div class="col-md-7">
-            <img class="img-fluid" src="{{package.photoUrl}}" alt="{{package.name}}">
-        </div>
-
-        <!-- Product details -->
-        <div class="col-md-5">
-            <h1 class="my-4">
-                {{package.name}}
-            </h1>
-            <h3 class="my-3">Details</h3>
-            <div class="row">
-                <div class="col-md-12">
-                    <b>Country:</b>
-                    {{package.country}}
+<div class="tab-panel" *ngIf="package">
+    <tabset class="member-tabset">
+        <tab heading="Info">
+            <div class="container">
+                <div class="row">
+                    <!-- Product main image -->
+                    <div class="col-md-7">
+                        <img class="img-fluid" src="{{package.photoUrl}}" alt="{{package.name}}">
+                    </div>
+            
+                    <!-- Product details -->
+                    <div class="col-md-5">
+                        <h1 class="my-4">
+                            {{package.name}}
+                        </h1>
+                        <h3 class="my-3">Details</h3>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <b>Country:</b>
+                                {{package.country}}
+                            </div>
+                            <div class="col-md-12">
+                                <b>Start:</b>
+                                {{package.start}}
+                            </div>
+                            <div class="col-md-12">
+                                <b>End:</b>
+                                {{package.end}}
+                            </div>
+                            <div class="m-bot15"> <strong>Price : </strong>  <span class="pro-price"> ${{package.price}}</span></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-12">
-                    <b>Start:</b>
-                    {{package.start}}
+            
+                <h3 class="my-4">Pictures</h3>
+            
+                <div class="row">
+            
+                    <div class="col-md-3 col-sm-6 mb-4">
+                        <a href="#">
+                            <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
+                        </a>
+                    </div>
+            
+                    <div class="col-md-3 col-sm-6 mb-4">
+                        <a href="#">
+                            <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
+                        </a>
+                    </div>
+            
+                    <div class="col-md-3 col-sm-6 mb-4">
+                        <a href="#">
+                            <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
+                        </a>
+                    </div>
+            
+                    <div class="col-md-3 col-sm-6 mb-4">
+                        <a href="#">
+                            <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
+                        </a>
+                    </div>
+            
                 </div>
-                <div class="col-md-12">
-                    <b>End:</b>
-                    {{package.start}}
+            
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="my-3">Description</h3>
+                        {{package.description}}
+                    </div>
                 </div>
-                <div class="m-bot15"> <strong>Price : </strong>  <span class="pro-price"> ${{package.price}}</span></div>
+            
             </div>
-        </div>
-    </div>
-
-    <h3 class="my-4">Pictures</h3>
-
-    <div class="row">
-
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
-            </a>
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
-            </a>
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
-            </a>
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
-            </a>
-        </div>
-
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <h3 class="my-3">Description</h3>
-            {{package.description}}
-        </div>
-    </div>
-
+        </tab>
+        <tab heading="Edit package">
+            <div class="container">
+                <app-tour-package-edit [(tourPackage)]="package"></app-tour-package-edit>
+            </div>
+        </tab>
+    </tabset>
 </div>

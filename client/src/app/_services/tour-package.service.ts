@@ -22,7 +22,14 @@ export class TourPackageService {
   }
 
   createTourPackage(model: TourPackage) {
-    console.log(model);
     return this.http.post<TourPackage>(this.baseUrl + 'tourpackages', model);
+  }
+
+  updateTourPackage(model: TourPackage): Observable<TourPackage> {
+    return this.http.put<TourPackage>(this.baseUrl + 'tourpackages', model).pipe(
+      map(() => {
+        return model;
+      })
+    );
   }
 }
