@@ -14,6 +14,7 @@ namespace API.Entities
         public DateTime End { get; set; }
         public string Description { get; set; }
         public string Country { get; set; }
+        public AppUser Expert { get; set; }
 
         public ICollection<Tour> Tours { get; set; }
         public ICollection<Service> Services { get; set; }

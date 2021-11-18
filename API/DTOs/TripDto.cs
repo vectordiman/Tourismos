@@ -14,6 +14,7 @@ namespace API.DTOs
         public string Description { get; set; }
         public string Country { get; set; }
         public string PhotoUrl { get; set; }
+        public ExpertDto Expert { get; set; }
 
         public ICollection<Service> Services { get; set; }
         public ICollection<Photo> Photos { get; set; }

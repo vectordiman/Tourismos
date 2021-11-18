@@ -58,7 +58,13 @@ namespace API.Data
                 .HasForeignKey(k => k.TourPackageId);
 
 
-            
+
+            builder.Entity<TourPackage>()
+                .HasOne(u => u.Expert)
+                .WithMany(m => m.SupervisedTourPackages);
+
+
+
             // Naming intermediate entities.
             builder.Entity<AppUser>()
                 .HasMany(u => u.Photos)
@@ -88,8 +94,8 @@ namespace API.Data
             builder.Entity<Tour>()
                 .HasMany(t => t.Services)
                 .WithMany(s => s.Tours)
-                .UsingEntity(j => j.ToTable("TourServices"));  
-            
+                .UsingEntity(j => j.ToTable("TourServices"));
+
         }
     }
 }
