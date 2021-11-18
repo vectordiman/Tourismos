@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TourPackage } from '../_models/tour-package';
 import { User } from '../_models/user';
+import { Expert } from '../_models/expert';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +20,9 @@ export class AdminService {
 
   updateUserRole(username: string, role: string) {
     return this.http.get(this.baseUrl + 'admin/edit-role/' + username + '?role=' + role);
+  }
+
+  getExperts() {
+    return this.http.get<Partial<Expert[]>>(this.baseUrl + "users/expert");
   }
 }

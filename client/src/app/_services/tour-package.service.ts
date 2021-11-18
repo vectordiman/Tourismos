@@ -27,8 +27,8 @@ export class TourPackageService {
 
   updateTourPackage(model: TourPackage): Observable<TourPackage> {
     return this.http.put<TourPackage>(this.baseUrl + 'tourpackages', model).pipe(
-      map(() => {
-        return model;
+      map((expert) => {
+        return expert;
       })
     );
   }
