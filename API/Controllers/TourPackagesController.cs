@@ -45,9 +45,15 @@ namespace API.Controllers
             return Ok(trip);
         }
 
+
+
         [HttpPut]
-        public async Task<ActionResult> UpdatePackage(TourPackage package)
+        public async Task<ActionResult> UpdatePackage(TripDto trip)
         {
+            var package = _mapper.Map<TourPackage>(trip);
+            var expert = await _unitOfWork.UserRepository.GetUserByUsernameAsync(package.Expert.UserName);
+            package.Expert = expert;
+            
             _unitOfWork.TourPackageRepository.Update(package);
 
             if (await _unitOfWork.Complete()) return NoContent();
