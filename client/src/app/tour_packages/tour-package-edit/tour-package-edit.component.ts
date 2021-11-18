@@ -2,7 +2,9 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Expert } from 'src/app/_models/expert';
 import { TourPackage } from 'src/app/_models/tour-package';
+import { AdminService } from 'src/app/_services/admin.service';
 import { TourPackageService } from 'src/app/_services/tour-package.service';
 
 @Component({
@@ -14,16 +16,18 @@ export class TourPackageEditComponent implements OnInit, OnChanges {
   @Input() tourPackage!: TourPackage;
   @Output() tourPackageChange = new EventEmitter<TourPackage>();
   editTourForm!: FormGroup;
+  experts: Partial<Expert[]> = [];
 
   constructor(private tourPackageService: TourPackageService,
     private toastr: ToastrService, private fb: FormBuilder,
-    private router: Router) { }
+    private router: Router, private adminService: AdminService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     
   }
 
   ngOnInit(): void {
+    this.loadExperts();
     this.initializeForm();
   }
 
@@ -36,14 +40,26 @@ export class TourPackageEditComponent implements OnInit, OnChanges {
       end: [this.tourPackage.end, Validators.required],
       country: [this.tourPackage.country, Validators.required],
       description: [this.tourPackage.description],
+      expertName: [this.tourPackage.expert?.username],
+      expert: [this.tourPackage.expert],
     });
   }
 
   updatePackage() {
-    this.tourPackageService.updateTourPackage(this.editTourForm.value).subscribe((updatedPackage: TourPackage) => {
-      this.tourPackage = updatedPackage;
+    let expert = this.experts.find(exp => exp?.username == this.editTourForm.controls["expertName"].value);
+    this.editTourForm.controls["expert"].setValue(expert);
+
+    this.tourPackageService.updateTourPackage(this.editTourForm.value).subscribe(() => {
+      this.tourPackage = this.editTourForm.value;
       this.tourPackageChange.emit(this.tourPackage);
-    }); 
+    });
+  }
+
+  loadExperts() {
+    this.adminService.getExperts().subscribe((experts: Partial<Expert[]>) => {
+      this.experts = experts;
+      console.log(this.experts);
+    });
   }
 
 }

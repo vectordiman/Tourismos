@@ -71,7 +71,7 @@
             
             </div>
         </tab>
-        <tab heading="Edit package">
+        <tab heading="Edit package" *appHasRole="'Admin'">
             <div class="container">
                 <app-tour-package-edit [(tourPackage)]="package"></app-tour-package-edit>
             </div>

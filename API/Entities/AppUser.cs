@@ -18,6 +18,7 @@ namespace API.Entities
         public ICollection<Message> MessagesReceived { get; set; }
 
         public ICollection<Tour> Tours { get; set; }
+        public ICollection<TourPackage> SupervisedTourPackages { get; set; }
     }
 
 }

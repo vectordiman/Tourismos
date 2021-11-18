@@ -32,7 +32,9 @@ namespace API.Data
         public async Task<TourPackage> GetTourPackage(int id)
         {
             return await _context.TourPackages
-                .Include(p => p.Photos).SingleOrDefaultAsync(x => x.Id == id);
+                .Include(p => p.Photos)
+                .Include(exp => exp.Expert)
+                .SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<IEnumerable<TourPackage>> GetTourPackagesAsync()
@@ -43,6 +45,7 @@ namespace API.Data
         public void Update(TourPackage package)
         {
             _context.TourPackages.Update(package);
+            //_context.Entry<TourPackage>(package).State = EntityState.Modified;
         }
     }
 }

@@ -1,3 +1,4 @@
+import { Expert } from "./expert";
 import { Photo } from "./photo";
 
 export interface TourPackage {
@@ -10,4 +11,5 @@ export interface TourPackage {
     description: string;
     country: string;
     photos: Photo[];
+    expert: Expert;
   }
