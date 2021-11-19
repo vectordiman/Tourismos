@@ -3,6 +3,6 @@ export interface User {
   token: string;
   photoUrl: string;
   name: string;
-  lastname: string;
+  lastName: string;
   role: string;
 }

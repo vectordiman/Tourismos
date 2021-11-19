@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Member} from "../../_models/member";
 import {FileItem, FileUploader, ParsedResponseHeaders} from "ng2-file-upload";
 import {environment} from "../../../environments/environment";
@@ -14,8 +14,6 @@ import {Photo} from "../../_models/photo";
   styleUrls: ['./photo-editor.component.css']
 })
 export class PhotoEditorComponent implements OnInit {
-  @Input() member!: Member;
-  @Output() memberChange = new EventEmitter<Member>()
   uploader!: FileUploader;
   hasBaseDropzoneOver = false;
   baseUrl = environment.apiUrl;
@@ -33,12 +31,8 @@ export class PhotoEditorComponent implements OnInit {
     this.hasBaseDropzoneOver = event;
   }
 
-  addMainPhoto(photoUrl: string) {
-    this.uploader.uploadAll()
-    this.user.photoUrl = photoUrl;
-    this.accountService.setCurrentUser(this.user);
-    this.member.photoUrl = photoUrl;
-    this.memberChange.emit(this.member)
+  setMainPhoto(photo: Photo) {
+    this.memberService.setMainPhoto(photo.id).subscribe(() => {})
   }
 
   // deletePhoto(photoId: number) {
@@ -49,7 +43,7 @@ export class PhotoEditorComponent implements OnInit {
 
   initializeUploader() {
     this.uploader = new FileUploader({
-      url: this.baseUrl + 'users/add-main-photo',
+      url: this.baseUrl + 'users/add-photo',
       authToken: 'Bearer ' + this.user.token,
       isHTML5: true,
       allowedFileType: ['image'],
@@ -66,8 +60,9 @@ export class PhotoEditorComponent implements OnInit {
       if (response) {
         const photo: Photo = JSON.parse(response);
         this.user.photoUrl = photo.url;
-        this.member.photoUrl = photo.url;
         this.accountService.setCurrentUser(this.user);
+
+        this.setMainPhoto(photo);
       }
     }
   }

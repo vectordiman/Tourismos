@@ -12,20 +12,17 @@ import {MemberService} from "../../_services/member.service";
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  @Input() member!: Member;
   user!: User;
+  editMode = false;
 
-  constructor(private route: ActivatedRoute, private accountService: AccountService, private memberService: MemberService) {
+  constructor(private route: ActivatedRoute, private accountService: AccountService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
 
   ngOnInit(): void {
-    this.loadMember();
   }
 
-  loadMember() {
-    this.memberService.getMember(this.user.username).subscribe(member => {
-      this.member = member;
-    })
+  edit() {
+    this.editMode = !this.editMode;
   }
 }
