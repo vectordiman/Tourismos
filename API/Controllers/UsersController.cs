@@ -53,8 +53,8 @@ namespace API.Controllers
             return BadRequest("Failed to update user");
         }
         
-        [HttpPost("add-main-photo")]
-        public async Task<ActionResult<PhotoDto>> AddMainPhoto(IFormFile file)
+        [HttpPost("add-photo")]
+        public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file)
         {
             var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
 
@@ -65,8 +65,7 @@ namespace API.Controllers
             var photo = new Photo
             {
                 Url = result.SecureUrl.AbsoluteUri,
-                PublicId = result.PublicId,
-                IsMain = true
+                PublicId = result.PublicId
             };
             
             user.Photos.Add(photo);
@@ -77,6 +76,27 @@ namespace API.Controllers
             }
 
             return BadRequest("Problem adding photo");
+        }
+
+        [HttpPut("set-main-photo/{photoId}")]
+        public async Task<ActionResult> SetMainPhoto(int photoId)
+        {
+            var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
+
+            var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
+
+            if (photo == null) return BadRequest("This photo doesn't exist");
+
+            if (photo.IsMain) return BadRequest("This is already your main photo");
+
+            var currentMain = user.Photos.FirstOrDefault(x => x.IsMain);
+            if (currentMain != null) currentMain.IsMain = false;
+            photo.IsMain = true;
+
+            if (await _unitOfWork.Complete())
+                return NoContent();
+
+            return BadRequest("Failed to set main photo");
         }
         
         [HttpDelete("delete-photo/{photoId}")]
