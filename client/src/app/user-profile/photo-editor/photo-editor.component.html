@@ -12,9 +12,9 @@
          [ngStyle]="{ 'width': uploader.progress + '%'}"></div>
   </div>
   <button type="button" class="btn btn-outline-info btn-sm ml-3 mr-2 mt-2 btn-file"
-          (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length"><div class="fa fa-upload"></div>
+          (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length"><i class="fa fa-upload"></i>
   </button>
   <button type="button" class="btn btn-outline-primary btn-sm mt-2 btn-file"
-          (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length"><div class="fa fa-trash-o"></div>
+          (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length"><i class="fa fa-trash-o"></i>
   </button>
 </div>
