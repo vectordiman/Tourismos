@@ -12,6 +12,7 @@ namespace API.Helpers
             CreateMap<RegisterDto, AppUser>();
             CreateMap<UserUpdateDto, AppUser>();
             CreateMap<Photo, PhotoDto>();
+            CreateMap<AppUser, UserDto>();
             CreateMap<TourPackage, TripDto>()
                 .ForMember(dest => dest.PhotoUrl,
                     opt => opt.MapFrom(src =>
