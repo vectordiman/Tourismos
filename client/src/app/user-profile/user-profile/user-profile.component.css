@@ -4,4 +4,47 @@
 
 .btn-file {
   height: 40px;
+  width: 50px;
+}
+
+.progress {
+  height: 40px;
+  margin-top: 6px;
+}
+
+.btn-file-photo {
+  background: none;
+}
+
+.btn-file-delete {
+  background: none;
+  right: -100%;
+
+}
+
+.card-img-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.card-img-wrapper:hover .member-photo {
+  top: 5%;
+  left: 5%;
+}
+
+.card-img-wrapper:hover .member-delete {
+  top: 5%;
+  right: 13%;
+}
+
+.member-photo {
+  position: absolute;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.member-delete {
+  position: absolute;
+  margin-right: auto;
+  margin-left: auto;
 }

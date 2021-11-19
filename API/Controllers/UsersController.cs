@@ -85,7 +85,7 @@ namespace API.Controllers
 
             var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
 
-            if (photo == null) return BadRequest("This photo doesn't exist");
+            if (photo == null) return NotFound();
 
             if (photo.IsMain) return BadRequest("This is already your main photo");
 

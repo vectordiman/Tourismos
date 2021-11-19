@@ -12,7 +12,6 @@ namespace API.DTOs
         public string PhoneNumber { get; set; }
         public string Token { get; set; }
         public string PhotoUrl { get; set; }
-        
-        public ICollection<Photo> Photos { get; set; }
+        public int? PhotoId { get; set; }
     }
 }
