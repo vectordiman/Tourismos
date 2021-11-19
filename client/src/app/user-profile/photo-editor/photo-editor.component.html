@@ -2,19 +2,19 @@
      [ngClass]="{'nv-file-over': hasBaseDropzoneOver}"
      (fileOver)="fileOverBase($event)"
      [uploader]="uploader"
-     class="card bg-faded p-3 text-center mb-3 my-drop-zone">
+     class="card bg-faded p-3 text-center mt-2 mb-3 my-drop-zone">
   <i class="fa fa-upload fa-3x"></i>
   Drop photo here
 </div>
 <div class="mt-0 form-inline" *ngIf="uploader?.queue?.length">
-  <div class="progress col-md-4">
+  <div class="progress col-md-7">
     <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
-         [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+         [ngStyle]="{ 'width': uploader.progress + '%'}"></div>
   </div>
   <button type="button" class="btn btn-outline-info btn-sm ml-3 mr-2 mt-2 btn-file"
-          (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Upload
+          (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length"><div class="fa fa-upload"></div>
   </button>
   <button type="button" class="btn btn-outline-primary btn-sm mt-2 btn-file"
-          (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">Cancel
+          (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length"><div class="fa fa-trash"></div>
   </button>
 </div>

@@ -4,5 +4,10 @@
 
 .btn-file {
   height: 40px;
-  width: 90px;
+  width: 50px;
+}
+
+.progress {
+  height: 40px;
+  margin-top: 6px;
 }
