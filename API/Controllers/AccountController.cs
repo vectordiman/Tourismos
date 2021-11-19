@@ -71,6 +71,7 @@ namespace API.Controllers
                 Token = await _tokenService.CreateToken(user),
                 Name = user.Name,
                 PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
+                PhotoId = user.Photos.FirstOrDefault(x => x.IsMain)?.Id,
                 LastName = user.LastName,
                 Email = user.Email
             };

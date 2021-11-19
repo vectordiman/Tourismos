@@ -1,0 +1,64 @@
+<div class="header form-inline">
+  <div class="rectangle mr-3"
+       style="width: 20px; height: 13px; background-color: cornflowerblue; border-radius: 40%"></div>
+  <h2 *ngIf="!memberService.editUserMode">Profile</h2>
+  <h2 *ngIf="memberService.editUserMode">Edit profile</h2>
+</div>
+<div class="row mt-2">
+  <div class="col-3">
+    <div class="card">
+      <div class="card-img-wrapper">
+        <img src="{{user.photoUrl || './assets/user.png' }}" alt="{{user.name}} + {{user.lastName}}"
+             class="card-img-top img-thumbnail">
+        <ul class="list-inline member-photo">
+          <label class="btn btn-outline-info btn-sm btn-file-photo list-inline-item">
+            <i class="fa fa-camera"></i><input type="file" style="display: none;" required ng2FileSelect
+                                               [uploader]="uploader">
+          </label>
+        </ul>
+        <ul class="list-inline member-delete">
+          <label class="btn btn-outline-info btn-sm btn-file-delete list-inline-item" *ngIf="user.photoId" (click)="deletePhoto(user.photoId)">
+            <i class="fa fa-trash"></i>
+          </label>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-8">
+    <app-user-profile-detail *ngIf="!memberService.editUserMode"></app-user-profile-detail>
+    <app-user-profile-edit *ngIf="memberService.editUserMode"></app-user-profile-edit>
+  </div>
+</div>
+<div class="row mt-3">
+  <div class="col-3">
+    <div ng2FileDrop *ngIf="!uploader?.queue?.length"
+         [ngClass]="{'nv-file-over': hasBaseDropzoneOver}"
+         (fileOver)="fileOverBase($event)"
+         [uploader]="uploader"
+         class="card bg-faded p-3 text-center mt-2 mb-3">
+      <i class="fa fa-upload fa-3x"></i>
+      Drop photo here
+    </div>
+    <div class="mt-0 form-inline" *ngIf="uploader?.queue?.length">
+      <div class="progress col-md-7">
+        <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
+             [ngStyle]="{ 'width': uploader.progress + '%'}"></div>
+      </div>
+      <button type="button" class="btn btn-outline-info btn-sm ml-3 mr-2 mt-2 btn-file"
+              (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length"><i
+        class="fa fa-upload"></i>
+      </button>
+      <button type="button" class="btn btn-outline-primary btn-sm mt-2 btn-file"
+              (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length"><i class="fa fa-trash-o"></i>
+      </button>
+    </div>
+  </div>
+  <div class="col-8">
+    <button type="button" class="btn btn-outline-info btn-sm mt-2 btn-file" style="width: 120px;" (click)="edit()"
+            *ngIf="!memberService.editUserMode">
+      <i class="fa fa-edit mr-1"></i>
+      Edit profile
+    </button>
+  </div>
+</div>
+

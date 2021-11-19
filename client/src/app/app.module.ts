@@ -29,6 +29,10 @@ import { FooterComponent } from './footer/footer.component';
 import { UserMessagesComponent } from './user-messages/user-messages.component';
 import { HasRoleDirective } from './_directives/has-role.directive';
 import { TourPackageEditComponent } from './tour_packages/tour-package-edit/tour-package-edit.component';
+import { UserProfileDetailComponent } from './user-profile/user-profile-detail/user-profile-detail.component';
+import { UserProfileEditComponent } from './user-profile/user-profile-edit/user-profile-edit.component';
+import { UserProfileComponent } from './user-profile/user-profile/user-profile.component';
+import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +58,10 @@ import { TourPackageEditComponent } from './tour_packages/tour-package-edit/tour
     UserMessagesComponent,
     HasRoleDirective,
     TourPackageEditComponent,
+    UserProfileDetailComponent,
+    UserProfileEditComponent,
+    UserProfileComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,

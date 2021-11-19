@@ -10,7 +10,8 @@ namespace API.Helpers
         public AutoMapperProfiles()
         {
             CreateMap<RegisterDto, AppUser>();
-
+            CreateMap<UserUpdateDto, AppUser>();
+            CreateMap<Photo, PhotoDto>();
             CreateMap<TourPackage, TripDto>()
                 .ForMember(dest => dest.PhotoUrl,
                     opt => opt.MapFrom(src =>

@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse" id="navbarColor02">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/">Features</a>
+          <a class="nav-link" routerLink="/">Tours</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/">Pricing</a>
@@ -33,11 +33,11 @@
         </li>
       </ul>
       <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
+        <a class="dropdown-toggle text-light mr-2" data-bs-toggle="dropdown" role="button" aria-haspopup="true"
+           aria-expanded="false" dropdownToggle style="text-decoration:none">{{user.name || user.username | titlecase}}</a>
         <img class="account-img" src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}">
-        <a class="dropdown-toggle text-light ml-2" data-bs-toggle="dropdown" role="button" aria-haspopup="true"
-           aria-expanded="false" dropdownToggle style="text-decoration:none">Welcome {{user.name || user.username | titlecase}}</a>
         <div class="dropdown-menu mt-3" *dropdownMenu>
-          <div class="dropdown-item">Edit profile</div>
+          <div class="dropdown-item" routerLink="/users/{{user.username}}">Profile</div>
           <div class="dropdown-item" (click)="logout()">Logout</div>
         </div>
       </div>

@@ -10,9 +10,23 @@ import { TourPackageListComponent } from './tour_packages/tour-package-list/tour
 import { TourPackageDetailComponent } from './tour_packages/tour-package-detail/tour-package-detail.component';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { AdminGuard } from './_guards/admin.guard';
+import {AuthGuard} from "./_guards/auth.guard";
+import {UserProfileComponent} from "./user-profile/user-profile/user-profile.component";
+import {UserProfileResolver} from "./_resolvers/user-profile.resolver";
+import {UserProfileEditComponent} from "./user-profile/user-profile-edit/user-profile-edit.component";
+import {PreventUnsavedChangesGuard} from "./_guards/prevent-unsaved-changes.guard";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
+  {
+    path:'',
+    runGuardsAndResolvers: 'always',
+    canActivate: [AuthGuard],
+    children: [
+      {path: 'users/:username', component: UserProfileComponent, resolve: {member: UserProfileResolver}},
+      {path: 'users/:username/edit', component: UserProfileEditComponent, canDeactivate: [PreventUnsavedChangesGuard]}
+    ]
+  },
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard]},
