@@ -1,29 +1,32 @@
-<div class="header form-inline">
-  <div class="rectangle mr-3"
-       style="width: 20px; height: 13px; background-color: cornflowerblue; border-radius: 40%"></div>
-  <h2 *ngIf="!editMode">Profile</h2>
-  <h2 *ngIf="editMode">Edit profile</h2>
-</div>
-<div class="row mt-2">
-  <div class="col-3">
-    <div class="card">
-      <img src="{{user.photoUrl || './assets/user.png' }}" alt="{{user.name}} + {{user.lastName}}"
-           class="card-img-top img-thumbnail">
+<div class="div">
+  <div class="header form-inline">
+    <div class="rectangle mr-3"
+         style="width: 20px; height: 13px; background-color: cornflowerblue; border-radius: 40%"></div>
+    <h2 *ngIf="!memberService.editUserMode">Profile</h2>
+    <h2 *ngIf="memberService.editUserMode">Edit profile</h2>
+  </div>
+  <div class="row mt-2">
+    <div class="col-3">
+      <div class="card">
+        <img src="{{user.photoUrl || './assets/user.png' }}" alt="{{user.name}} + {{user.lastName}}"
+             class="card-img-top img-thumbnail">
+      </div>
+    </div>
+    <div class="col-8">
+      <app-user-profile-detail *ngIf="!memberService.editUserMode"></app-user-profile-detail>
+      <app-user-profile-edit *ngIf="memberService.editUserMode"></app-user-profile-edit>
     </div>
   </div>
-  <div class="col-8">
-    <app-user-profile-detail *ngIf="!editMode"></app-user-profile-detail>
-    <app-user-profile-edit *ngIf="editMode"></app-user-profile-edit>
-  </div>
-</div>
-<div class="row mt-3">
-  <div class="col-3">
-    <app-photo-editor></app-photo-editor>
-  </div>
-  <div class="col-8">
-    <button type="button" class="btn btn-outline-info btn-sm mt-2 btn-file" (click)="edit()">
-      <div class="fa fa-edit mr-1"></div>
-      Edit Profile
-    </button>
+  <div class="row mt-3">
+    <div class="col-3">
+      <app-photo-editor></app-photo-editor>
+    </div>
+    <div class="col-8">
+      <button type="button" class="btn btn-outline-info btn-sm mt-2 btn-file" style="width: 120px;" (click)="edit()"
+              *ngIf="!memberService.editUserMode">
+        <div class="fa fa-edit mr-1"></div>
+        Edit profile
+      </button>
+    </div>
   </div>
 </div>

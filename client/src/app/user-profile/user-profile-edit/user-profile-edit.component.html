@@ -1,1 +1,39 @@
-<p>user-profile-edit works!</p>
+<div class="col">
+  <div class="row">
+    <div class="col-9">
+      <div class="alert alert-info h-25 mt-2" *ngIf="editForm.dirty">
+        <div class="alert-text" style="margin-top: -12px">
+          <strong>Information: </strong> You have made changes. Any unsaved changes will be lost
+        </div>
+      </div>
+    </div>
+    <form #editForm="ngForm" id="editForm" (ngSubmit)="updateMember()">
+      <div class="form-inline">
+        <label style="margin-right: 65px" for="name">Name: </label>
+        <input [(ngModel)]="member.name" type="text" name="name" id="name" class="form-control mx-2">
+      </div>
+      <div class="form-inline mt-4">
+        <label style="margin-right: 31px" for="lastName">Last Name:</label>
+        <input [(ngModel)]="member.lastName" type="text" name="lastName" id="lastName" class="form-control mx-2"></div>
+      <div class="form-inline mt-4">
+        <label style="margin-right: 68px" for="email">Email:</label>
+        <input [(ngModel)]="member.email" type="email" name="email" id="email" class="form-control mx-2"></div>
+      <div class="form-inline mt-4">
+        <label for="phoneNumber">Phone Number:</label>
+        <input [(ngModel)]="member.phoneNumber" type="text" name="phoneNumber" id="phoneNumber"
+               class="form-control mx-2">
+      </div>
+      <div class="btn-container" [class.btn-active]="editForm.dirty">
+        <button type="submit" class="btn btn-outline-info btn-sm mt-2 mr-2 btn-file"
+                [disabled]="!editForm.dirty" style="width: 140px;">
+          <div class="fa fa-save mr-1"></div>
+          Save changes
+        </button>
+        <button type="button" class="btn btn-outline-primary btn-sm mt-2 btn-file" style="width: 90px" (click)="edit()">
+          <div class="fa fa-trash-o mr-1"></div>
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

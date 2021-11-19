@@ -13,9 +13,8 @@ import {MemberService} from "../../_services/member.service";
 })
 export class UserProfileComponent implements OnInit {
   user!: User;
-  editMode = false;
 
-  constructor(private route: ActivatedRoute, private accountService: AccountService) {
+  constructor(private route: ActivatedRoute, private accountService: AccountService, public memberService: MemberService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
 
@@ -23,6 +22,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   edit() {
-    this.editMode = !this.editMode;
+    this.memberService.changeEditUserMode();
   }
 }

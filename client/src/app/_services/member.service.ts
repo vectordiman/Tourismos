@@ -16,12 +16,17 @@ export class MemberService {
   members: Member[] = [];
   memberCache = new Map();
   user!: User;
-
+  editUserMode = false;
 
   constructor(private http: HttpClient, private accountService: AccountService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       this.user = user;
     })
+  }
+
+
+  changeEditUserMode() {
+    this.editUserMode = ! this.editUserMode;
   }
 
   getMember(username: string | null) {
