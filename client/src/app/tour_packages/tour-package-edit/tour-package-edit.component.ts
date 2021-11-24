@@ -1,9 +1,12 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { UserModalComponent } from 'src/app/modals/user-modal/user-modal.component';
 import { Expert } from 'src/app/_models/expert';
 import { TourPackage } from 'src/app/_models/tour-package';
+import { User } from 'src/app/_models/user';
 import { AdminService } from 'src/app/_services/admin.service';
 import { TourPackageService } from 'src/app/_services/tour-package.service';
 
@@ -15,12 +18,14 @@ import { TourPackageService } from 'src/app/_services/tour-package.service';
 export class TourPackageEditComponent implements OnInit, OnChanges {
   @Input() tourPackage!: TourPackage;
   @Output() tourPackageChange = new EventEmitter<TourPackage>();
+  bsModalRef!: BsModalRef;
   editTourForm!: FormGroup;
   experts: Partial<Expert[]> = [];
 
   constructor(private tourPackageService: TourPackageService,
     private toastr: ToastrService, private fb: FormBuilder,
-    private router: Router, private adminService: AdminService) { }
+    private router: Router, private adminService: AdminService,
+    private modalService: BsModalService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     
@@ -60,6 +65,25 @@ export class TourPackageEditComponent implements OnInit, OnChanges {
       this.experts = experts;
       console.log(this.experts);
     });
+  }
+
+  openExpertModal() {
+    let expert = this.experts.find(exp => exp?.username == this.editTourForm.controls["expertName"].value);
+    let user: Partial<User> = {
+      username: expert!.username,
+      photoUrl: expert!.photoUrl,
+      name: expert!.name,
+      lastName: expert!.lastName,
+      role: 'Expert'
+    };
+
+    const config = {
+      class: 'modal-dialog-centered',
+      initialState: {
+        user
+      }
+    };
+    this.bsModalRef = this.modalService.show(UserModalComponent, config);
   }
 
 }

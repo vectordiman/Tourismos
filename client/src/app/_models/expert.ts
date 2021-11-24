@@ -3,7 +3,7 @@ export interface Expert {
     username: string;
     photoUrl: string;
     name: string;
-    lastname: string;
+    lastName: string;
     created: Date;
     lastActive: Date;
   }

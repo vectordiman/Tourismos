@@ -33,6 +33,7 @@ import { UserProfileDetailComponent } from './user-profile/user-profile-detail/u
 import { UserProfileEditComponent } from './user-profile/user-profile-edit/user-profile-edit.component';
 import { UserProfileComponent } from './user-profile/user-profile/user-profile.component';
 import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
+import { UserModalComponent } from './modals/user-modal/user-modal.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.c
     UserProfileEditComponent,
     UserProfileComponent,
     ConfirmDialogComponent,
+    UserModalComponent,
   ],
   imports: [
     BrowserModule,

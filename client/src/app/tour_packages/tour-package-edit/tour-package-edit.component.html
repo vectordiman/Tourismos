@@ -37,7 +37,7 @@
                         [formControl]='$any(editTourForm).controls["expertName"]'>
                         <option *ngFor="let expert of experts" value="{{expert?.username}}">{{expert?.username}}</option>
                     </select>
-                    <button class="btn btn-primary" type="button" id="btn-expert-info">Button</button>
+                    <button class="btn btn-primary" (click)="openExpertModal()" type="button" id="btn-expert-info">Show details</button>
                 </div>
             </div>
         </fieldset>
