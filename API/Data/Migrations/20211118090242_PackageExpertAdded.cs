@@ -6,10 +6,6 @@ namespace API.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Discriminator",
-                table: "AspNetUserRoles");
-
             migrationBuilder.AddColumn<int>(
                 name: "ExpertId",
                 table: "TourPackages",
