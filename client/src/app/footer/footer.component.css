@@ -4,4 +4,5 @@ footer {
 
 .btn {
   box-shadow: none;
+  z-index: 1;
 }

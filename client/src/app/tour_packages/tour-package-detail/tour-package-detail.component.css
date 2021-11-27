@@ -2,3 +2,25 @@
     font-size: 18px;
     padding: 0 10px;
 }
+
+.btn {
+  box-shadow: none;
+}
+
+.messages {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+}
+
+.btn-exit {
+  background: none;
+  position: relative;
+  right: -438px;
+  bottom: -30px;
+  z-index: 3;
+}
+
+.fa-times {
+  color: #5b62f4;
+}

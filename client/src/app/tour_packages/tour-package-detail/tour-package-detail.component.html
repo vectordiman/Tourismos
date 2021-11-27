@@ -7,7 +7,7 @@
                     <div class="col-md-7">
                         <img class="img-fluid" src="{{package.photoUrl}}" alt="{{package.name}}">
                     </div>
-            
+
                     <!-- Product details -->
                     <div class="col-md-5">
                         <h1 class="my-4">
@@ -31,44 +31,44 @@
                         </div>
                     </div>
                 </div>
-            
+
                 <h3 class="my-4">Pictures</h3>
-            
+
                 <div class="row">
-            
+
                     <div class="col-md-3 col-sm-6 mb-4">
                         <a href="#">
                             <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
                         </a>
                     </div>
-            
+
                     <div class="col-md-3 col-sm-6 mb-4">
                         <a href="#">
                             <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
                         </a>
                     </div>
-            
+
                     <div class="col-md-3 col-sm-6 mb-4">
                         <a href="#">
                             <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
                         </a>
                     </div>
-            
+
                     <div class="col-md-3 col-sm-6 mb-4">
                         <a href="#">
                             <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
                         </a>
                     </div>
-            
+
                 </div>
-            
+
                 <div class="row">
                     <div class="col-md-12">
                         <h3 class="my-3">Description</h3>
                         {{package.description}}
                     </div>
                 </div>
-            
+
             </div>
         </tab>
         <tab heading="Edit package" *appHasRole="'Admin'">
@@ -77,4 +77,13 @@
             </div>
         </tab>
     </tabset>
+</div>
+<div class="messages" *ngIf="package && user && package.expert && package.expert.username != user.username">
+  <button class="btn btn-outline-info btn-sm" *ngIf="!messageMode" (click)="messageModeChange()">
+    <i class="fa fa-comments-o fa-2x"></i>
+  </button>
+  <button class="btn btn-sm btn-exit" *ngIf="messageMode" (click)="messageModeChange()">
+    <i class="fa fa-times fa-lg"></i>
+  </button>
+  <app-user-messages [username]="package.expert.username" *ngIf="messageMode"></app-user-messages>
 </div>
