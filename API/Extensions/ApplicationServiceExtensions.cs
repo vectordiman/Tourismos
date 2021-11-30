@@ -23,7 +23,7 @@ namespace API.Extensions
             
             services.AddMvc().AddJsonOptions(o => {
                 o.JsonSerializerOptions
-                .ReferenceHandler = ReferenceHandler.Preserve; 
+                .ReferenceHandler = ReferenceHandler.Preserve;
             });
 
             services.AddDbContext<DataContext>(options =>

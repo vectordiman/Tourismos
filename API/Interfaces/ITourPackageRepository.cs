@@ -18,5 +18,7 @@ namespace API.Interfaces
         Task<IEnumerable<TourPackage>> GetTourPackagesAsync();
 
         Task<TourPackage> GetTourPackage(int id);
+
+        Task<IEnumerable<Photo>> GetTourPhotos(int id);
     }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Photo } from 'src/app/_models/photo';
 import { TourPackage } from 'src/app/_models/tour-package';
 import { TourPackageService } from 'src/app/_services/tour-package.service';
 
@@ -10,6 +11,7 @@ import { TourPackageService } from 'src/app/_services/tour-package.service';
 })
 export class TourPackageDetailComponent implements OnInit {
   package!: TourPackage;
+  packagePhotos!: Photo[];
 
   constructor(private tourPackageService: TourPackageService,
     private route: ActivatedRoute) { }
@@ -21,8 +23,17 @@ export class TourPackageDetailComponent implements OnInit {
   loadPackage() {
     this.tourPackageService.getTourPackage(this.route.snapshot.paramMap.get('id') || "")
       .subscribe(tourPackage => {
-        console.log(tourPackage);
         this.package = tourPackage;
+        this.loadTourPhotos();
+      });
+  }
+
+  loadTourPhotos() {
+    this.tourPackageService.getTourPhotos(this.route.snapshot.paramMap.get('id') || "")
+      .subscribe(photos => {
+        this.package.photos = photos;
+        this.packagePhotos = photos;
+        console.log(this.package);
       });
   }
 
