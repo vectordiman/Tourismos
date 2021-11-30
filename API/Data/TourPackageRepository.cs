@@ -37,6 +37,12 @@ namespace API.Data
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
 
+        public async Task<IEnumerable<Photo>> GetTourPhotos(int id)
+        {
+            var package = await _context.TourPackages.Include(p => p.Photos).SingleOrDefaultAsync(x => x.Id == id);
+            return package.Photos;
+        }
+
         public async Task<IEnumerable<TourPackage>> GetTourPackagesAsync()
         {
             return await _context.TourPackages.Include(p => p.Photos).ToListAsync();
