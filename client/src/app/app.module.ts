@@ -35,6 +35,7 @@ import { UserProfileComponent } from './user-profile/user-profile/user-profile.c
 import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
 import { UserModalComponent } from './modals/user-modal/user-modal.component';
 import { TourPhotoEditorComponent } from './tour_packages/tour-photo-editor/tour-photo-editor.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { TourPhotoEditorComponent } from './tour_packages/tour-photo-editor/tour
     BrowserAnimationsModule,
     ReactiveFormsModule,
     SharedModule,
+    CarouselModule.forRoot(),
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

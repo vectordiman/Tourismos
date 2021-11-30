@@ -1,13 +1,13 @@
 <div class="tab-panel" *ngIf="package && packagePhotos">
     <tabset class="member-tabset">
         <tab heading="Info">
-            <div class="container">
+            <div class="container mt-3">
                 <div class="row">
                     <!-- Product main image -->
                     <div class="col-md-7">
                         <img class="img-fluid" src="{{package.photoUrl}}" alt="{{package.name}}">
                     </div>
-            
+
                     <!-- Product details -->
                     <div class="col-md-5">
                         <h1 class="my-4">
@@ -27,48 +27,30 @@
                                 <b>End:</b>
                                 {{package.end}}
                             </div>
-                            <div class="m-bot15"> <strong>Price : </strong>  <span class="pro-price"> ${{package.price}}</span></div>
+                            <div class="m-bot15"> <strong>Price : </strong> <span class="pro-price">
+                                    ${{package.price}}</span></div>
                         </div>
                     </div>
                 </div>
-            
-                <h3 class="my-4">Pictures</h3>
-            
-                <div class="row">
-            
-                    <div class="col-md-3 col-sm-6 mb-4">
-                        <a href="#">
-                            <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
-                        </a>
-                    </div>
-            
-                    <div class="col-md-3 col-sm-6 mb-4">
-                        <a href="#">
-                            <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
-                        </a>
-                    </div>
-            
-                    <div class="col-md-3 col-sm-6 mb-4">
-                        <a href="#">
-                            <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
-                        </a>
-                    </div>
-            
-                    <div class="col-md-3 col-sm-6 mb-4">
-                        <a href="#">
-                            <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
-                        </a>
-                    </div>
-            
-                </div>
-            
+
                 <div class="row">
                     <div class="col-md-12">
                         <h3 class="my-3">Description</h3>
                         {{package.description}}
                     </div>
                 </div>
-            
+
+                <h3 class="my-4">Pictures</h3>
+
+                <div class="row mb-3">
+                    <carousel [isAnimated]="true" [pauseOnFocus]="true">
+                        <slide *ngFor="let photo of package.photos">
+                            <img class="img-fluid" src="{{photo.url}}" alt="{{photo.url}}"
+                                style="display: block; width: 100%;">
+                        </slide>
+                    </carousel>
+                </div>
+
             </div>
         </tab>
         <tab heading="Edit package" *appHasRole="'Admin'">
