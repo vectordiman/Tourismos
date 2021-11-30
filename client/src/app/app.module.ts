@@ -34,6 +34,7 @@ import { UserProfileEditComponent } from './user-profile/user-profile-edit/user-
 import { UserProfileComponent } from './user-profile/user-profile/user-profile.component';
 import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
 import { UserModalComponent } from './modals/user-modal/user-modal.component';
+import { TourPhotoEditorComponent } from './tour_packages/tour-photo-editor/tour-photo-editor.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { UserModalComponent } from './modals/user-modal/user-modal.component';
     UserProfileComponent,
     ConfirmDialogComponent,
     UserModalComponent,
+    TourPhotoEditorComponent,
   ],
   imports: [
     BrowserModule,
