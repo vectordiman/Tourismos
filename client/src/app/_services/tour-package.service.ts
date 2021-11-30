@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Photo } from '../_models/photo';
 import { TourPackage } from '../_models/tour-package';
 
 @Injectable({
@@ -21,6 +22,10 @@ export class TourPackageService {
     return this.http.get<TourPackage>(this.baseUrl + 'tourpackages/' + id);
   }
 
+  getTourPhotos(tourId: string): Observable<Photo[]> {
+    return this.http.get<Photo[]>(this.baseUrl + 'tourpackages/photos/' + tourId);
+  }
+
   createTourPackage(model: TourPackage) {
     return this.http.post<TourPackage>(this.baseUrl + 'tourpackages', model);
   }
@@ -31,5 +36,15 @@ export class TourPackageService {
         return expert;
       })
     );
+  }
+
+  setMainPhoto(tourId: number, photoId: number) {
+    let url: string = this.baseUrl + 'tourpackages/' + tourId + '/set-main-photo/' + photoId;
+    return this.http.put(url, {});
+  }
+
+  deletePhoto(tourId: number, photoId: number) {
+    let url: string = this.baseUrl + 'tourpackages/' + tourId + '/delete-photo/' + photoId;
+    return this.http.delete(url);
   }
 }

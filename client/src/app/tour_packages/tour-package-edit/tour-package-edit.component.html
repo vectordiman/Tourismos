@@ -46,4 +46,8 @@
             <button [disabled]='!editTourForm.valid' class="btn btn-success mr-2" type="submit">Save changes</button>
         </div>
     </form>
+
+    <hr style="display: block; border: 1px inset;" />
+
+    <app-tour-photo-editor [tour]="tourPackage"></app-tour-photo-editor>
 </div>
