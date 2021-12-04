@@ -45,6 +45,7 @@ export class TourPackageEditComponent implements OnInit, OnChanges {
       end: [this.tourPackage.end, Validators.required],
       country: [this.tourPackage.country, Validators.required],
       description: [this.tourPackage.description],
+      photoUrl: [this.tourPackage.photoUrl],
       expertName: [this.tourPackage.expert?.username],
       expert: [this.tourPackage.expert],
     });
@@ -55,8 +56,9 @@ export class TourPackageEditComponent implements OnInit, OnChanges {
     this.editTourForm.controls["expert"].setValue(expert);
 
     this.tourPackageService.updateTourPackage(this.editTourForm.value).subscribe(() => {
-      this.tourPackage = this.editTourForm.value;
-      this.tourPackageChange.emit(this.tourPackage);
+      this.toastr.success("Updated successfully");
+      this.editTourForm.reset(this.tourPackage);
+      this.editTourForm.controls["expertName"].setValue(this.tourPackage.expert.username);
     });
   }
 

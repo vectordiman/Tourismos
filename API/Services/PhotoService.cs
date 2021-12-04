@@ -11,7 +11,7 @@ namespace API.Services
     public class PhotoService : IPhotoService
     {
         private readonly Cloudinary _cloudinary;
-        
+
         public PhotoService(IOptions<CloudinarySettings> config)
         {
             var acc = new Account
@@ -24,17 +24,33 @@ namespace API.Services
             _cloudinary = new Cloudinary(acc);
         }
 
-        public async Task<ImageUploadResult> AddPhotoAsync(IFormFile file)
+        private Transformation GetTransformation(PhotoType type)
+        {
+            var transformation = new Transformation();
+            switch (type)
+            {
+                case PhotoType.User:
+                    transformation.Height(500).Width(500).Crop("fill").Gravity("face");
+                    break;
+                case PhotoType.TourPackage:
+                    transformation.Height(1080).Width(1920);
+                    break;
+            }
+
+            return transformation;
+        }
+
+        public async Task<ImageUploadResult> AddPhotoAsync(IFormFile file, PhotoType photoType)
         {
             var uploadResult = new ImageUploadResult();
-
+            var transformation = GetTransformation(photoType);
             if (file.Length > 0)
             {
                 using var stream = file.OpenReadStream();
                 var uploadParams = new ImageUploadParams
                 {
                     File = new FileDescription(file.FileName, stream),
-                    Transformation = new Transformation().Height(500).Width(500).Crop("fill").Gravity("face")
+                    Transformation = transformation
                 };
                 uploadResult = await _cloudinary.UploadAsync(uploadParams);
             }
@@ -49,5 +65,11 @@ namespace API.Services
 
             return result;
         }
+    }
+
+    public enum PhotoType
+    {
+        User,
+        TourPackage
     }
 }

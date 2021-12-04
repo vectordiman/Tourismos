@@ -6,6 +6,7 @@ using API.DTOs;
 using API.Entities;
 using API.Extensions;
 using API.Interfaces;
+using API.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -64,7 +65,7 @@ namespace API.Controllers
 
             if (tourPackage == null) BadRequest("No tour package found");
 
-            var result = await _photoService.AddPhotoAsync(file);
+            var result = await _photoService.AddPhotoAsync(file, PhotoType.TourPackage);
 
             if (result.Error != null) return BadRequest(result.Error.Message);
 
