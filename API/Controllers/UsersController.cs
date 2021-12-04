@@ -5,6 +5,7 @@ using API.DTOs;
 using API.Entities;
 using API.Extensions;
 using API.Interfaces;
+using API.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -58,7 +59,7 @@ namespace API.Controllers
         {
             var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
 
-            var result = await _photoService.AddPhotoAsync(file);
+            var result = await _photoService.AddPhotoAsync(file, PhotoType.User);
 
             if (result.Error != null) return BadRequest(result.Error.Message);
 
