@@ -10,6 +10,7 @@ using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
@@ -82,11 +83,13 @@ namespace API.Data
 
             query = messageParams.Container switch
             {
-                "Inbox" => query.Where(u => u.RecipientUsername == messageParams.Username && u.RecipientDeleted == false),
+                "Inbox" => query.Where(
+                    u => u.RecipientUsername == messageParams.Username && u.RecipientDeleted == false),
                 "Outbox" => query.Where(u => u.SenderUsername == messageParams.Username && u.SenderDeleted == false),
-                _ => query.Where(u => u.RecipientUsername == messageParams.Username && u.DateRead == null && u.RecipientDeleted == false)
+                _ => query.Where(u =>
+                    u.RecipientUsername == messageParams.Username && u.DateRead == null && u.RecipientDeleted == false)
             };
-            
+
             return await PagedList<MessageDto>.CreateAsync(query, messageParams.PageNumber, messageParams.PageSize);
         }
 
@@ -116,6 +119,18 @@ namespace API.Data
             }
 
             return messages;
+        }
+
+        public async Task<IEnumerable<UserDto>> GetSenders(string currentUsername)
+        {
+            var messages = await _context.Messages
+                .Where(m => m.Recipient.UserName == currentUsername)
+                .Include(s => s.Sender)
+                .ToListAsync();
+
+            var senders = _mapper.Map<IEnumerable<UserDto>>(messages.Select(m => m.Sender).Distinct());
+
+            return senders;
         }
     }
 }

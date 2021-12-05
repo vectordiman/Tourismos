@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
@@ -62,7 +63,14 @@ namespace API.Controllers
             
             Response.AddPaginationHeader(messages.CurrentPage, messages.PageSize, messages.TotalCount, messages.TotalPages);
 
-            return Ok(messages);
+            return Ok(messages.ToArray());
+        }
+        
+        [HttpGet("{username}")]
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetSenders(string username)
+        {
+            var users = await _unitOfWork.MessageRepository.GetSenders(username);
+            return Ok(users.ToArray());
         }
         
         [HttpDelete("{id}")]

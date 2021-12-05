@@ -1,9 +1,9 @@
 import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
-import {Member} from "../../_models/member";
-import {User} from "../../_models/user";
-import {AccountService} from "../../_services/account.service";
-import {MemberService} from "../../_services/member.service";
+import {Member} from "../../../_models/member";
+import {User} from "../../../_models/user";
+import {AccountService} from "../../../_services/account.service";
+import {MemberService} from "../../../_services/member.service";
 import {ToastrService} from "ngx-toastr";
 import {take} from "rxjs/operators";
 import {ActivatedRoute, Router} from "@angular/router";

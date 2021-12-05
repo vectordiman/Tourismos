@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {getPaginatedResult, getPaginationHeaders} from "./paginationHeader";
+import {getPaginatedResult, getPaginationHeaders} from "./paginationHelpers";
 import {Message} from "../_models/message";
 import {HubConnection, HubConnectionBuilder} from "@microsoft/signalr";
 import {User} from "../_models/user";
@@ -57,6 +57,10 @@ export class MessageService {
       this.messageThreadSource.next([]);
       this.hubConnection.stop();
     }
+  }
+
+  getSenders(username: string) {
+    return this.http.get<User[]>(this.baseUrl + 'messages/' + username);
   }
 
   getMessages(pageNumber: number, pageSize: number, container: string) {

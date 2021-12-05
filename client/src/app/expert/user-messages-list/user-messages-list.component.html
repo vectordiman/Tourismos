@@ -1,0 +1,40 @@
+<br>
+
+<div class="row" *ngIf="senders?.length === 0">
+  <h3 class="text-center">No messages</h3>
+</div>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">User</th>
+    <th scope="col">Email</th>
+    <th scope="col">Phone</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let sender of senders">
+    <th scope="row"><img
+      class="img-circle rounded-circle mr-2"
+      src="{{sender.photoUrl || './assets/user.png'}}"
+      alt="{{sender.photoUrl}}">{{sender.name}} {{sender.lastName}}</th>
+    <th scope="row">{{sender.email || 'No description provided'}}</th>
+    <th scope="row">{{sender.phoneNumber || 'No description provided'}}</th>
+    <th scope="row">
+      <button type="button" *ngIf="!isCollapsed" class="btn btn-outline-info btn-sm"
+              (click)="isCollapsed = !isCollapsed"
+              [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">Hide
+      </button>
+      <button type="button" *ngIf="isCollapsed" class="btn btn-outline-info btn-sm" (click)="isCollapsed = !isCollapsed"
+              [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">Show
+      </button>
+      <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+        <app-user-messages [username]="sender.username"></app-user-messages>
+      </div>
+    </th>
+  </tr>
+  </tbody>
+</table>
+
+

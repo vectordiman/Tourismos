@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../../_models/user";
+import {User} from "../../../_models/user";
 import {ActivatedRoute} from "@angular/router";
-import {AccountService} from "../../_services/account.service";
+import {AccountService} from "../../../_services/account.service";
 import {take} from "rxjs/operators";
-import {MemberService} from "../../_services/member.service";
+import {MemberService} from "../../../_services/member.service";
 import {FileItem, FileUploader, ParsedResponseHeaders} from "ng2-file-upload";
-import {environment} from "../../../environments/environment";
-import {Photo} from "../../_models/photo";
+import {environment} from "../../../../environments/environment";
+import {Photo} from "../../../_models/photo";
 
 @Component({
   selector: 'app-user-profile',

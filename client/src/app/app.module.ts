@@ -26,14 +26,18 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
 import { TourPackageCreationComponent } from './admin/tour-package-creation/tour-package-creation.component';
 import { DateInputComponent } from './_forms/date-input/date-input.component';
 import { FooterComponent } from './footer/footer.component';
-import { UserMessagesComponent } from './user-messages/user-messages.component';
+import { UserMessagesComponent } from './user/user-messages/user-messages.component';
 import { HasRoleDirective } from './_directives/has-role.directive';
 import { TourPackageEditComponent } from './tour_packages/tour-package-edit/tour-package-edit.component';
-import { UserProfileDetailComponent } from './user-profile/user-profile-detail/user-profile-detail.component';
-import { UserProfileEditComponent } from './user-profile/user-profile-edit/user-profile-edit.component';
-import { UserProfileComponent } from './user-profile/user-profile/user-profile.component';
+import { UserProfileDetailComponent } from './user/user-profile/user-profile-detail/user-profile-detail.component';
+import { UserProfileEditComponent } from './user/user-profile/user-profile-edit/user-profile-edit.component';
+import { UserProfileComponent } from './user/user-profile/user-profile/user-profile.component';
 import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
 import { UserModalComponent } from './modals/user-modal/user-modal.component';
+import { UserMessagesListComponent } from './expert/user-messages-list/user-messages-list.component';
+import {PaginationModule} from "ngx-bootstrap/pagination";
+import {ButtonsModule} from "ngx-bootstrap/buttons";
+import {CollapseModule} from "ngx-bootstrap/collapse";
 
 @NgModule({
   declarations: [
@@ -64,16 +68,20 @@ import { UserModalComponent } from './modals/user-modal/user-modal.component';
     UserProfileComponent,
     ConfirmDialogComponent,
     UserModalComponent,
+    UserMessagesListComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    SharedModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        SharedModule,
+        PaginationModule,
+        ButtonsModule,
+        CollapseModule,
+    ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

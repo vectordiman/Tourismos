@@ -32,7 +32,6 @@ export class TourPackageDetailComponent implements OnInit, OnDestroy {
   loadPackage() {
     this.tourPackageService.getTourPackage(this.route.snapshot.paramMap.get('id') || "")
       .subscribe(tourPackage => {
-        console.log(tourPackage);
         this.package = tourPackage;
       });
   }

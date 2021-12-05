@@ -76,6 +76,11 @@
                 <app-tour-package-edit [(tourPackage)]="package"></app-tour-package-edit>
             </div>
         </tab>
+      <tab heading="Messages" *appHasRole="'Expert'">
+        <div class="container">
+          <app-user-messages-list></app-user-messages-list>
+        </div>
+      </tab>
     </tabset>
 </div>
 <div class="messages" *ngIf="package && user && package.expert && package.expert.username != user.username">
