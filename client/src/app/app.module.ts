@@ -40,6 +40,7 @@ import { UserMessagesListComponent } from './expert/user-messages-list/user-mess
 import {PaginationModule} from "ngx-bootstrap/pagination";
 import {ButtonsModule} from "ngx-bootstrap/buttons";
 import {CollapseModule} from "ngx-bootstrap/collapse";
+import { FavoritesToursComponent } from './user/favorites-tours/favorites-tours.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import {CollapseModule} from "ngx-bootstrap/collapse";
     UserModalComponent,
     TourPhotoEditorComponent,
     UserMessagesListComponent,
+    FavoritesToursComponent,
   ],
   imports: [
     BrowserModule,
