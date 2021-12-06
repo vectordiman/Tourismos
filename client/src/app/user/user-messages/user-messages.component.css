@@ -1,5 +1,12 @@
 .card {
   border: none;
+  background: radial-gradient(circle at top right, transparent 35px, #e4ebf5 0) top right;
+  z-index: 2;
+  width: 467px;
+}
+
+.btn {
+  box-shadow: none;
 }
 
 .chat {
@@ -16,4 +23,8 @@
 
 .rounded-circle {
   max-height: 50px;
+}
+
+.input-group {
+  border-radius: 27px;
 }

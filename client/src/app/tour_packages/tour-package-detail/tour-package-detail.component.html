@@ -60,3 +60,19 @@
         </tab>
     </tabset>
 </div>
+
+<div class="messages" *ngIf="package && user && package.expert">
+  <div *ngIf="package.expert.username != user.username">
+  <button class="btn btn-outline-info btn-sm" *ngIf="!messageMode" (click)="messageModeChange()">
+    <i class="fa fa-comments-o fa-2x"></i>
+  </button>
+  <button class="btn btn-sm btn-exit" *ngIf="messageMode" (click)="messageModeChange()">
+    <i class="fa fa-times fa-lg"></i>
+  </button>
+  <app-user-messages [username]="package.expert.username" *ngIf="messageMode"></app-user-messages>
+  </div>
+  <div *ngIf="package.expert.username == user.username">
+    <app-user-messages-list></app-user-messages-list>
+  </div>
+</div>
+

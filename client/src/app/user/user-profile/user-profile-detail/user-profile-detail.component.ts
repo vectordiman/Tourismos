@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Member} from "../../_models/member";
-import {User} from "../../_models/user";
+import {Member} from "../../../_models/member";
+import {User} from "../../../_models/user";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AccountService} from "../../_services/account.service";
+import {AccountService} from "../../../_services/account.service";
 import {take} from "rxjs/operators";
 
 @Component({

@@ -11,9 +11,9 @@ import { TourPackageDetailComponent } from './tour_packages/tour-package-detail/
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { AdminGuard } from './_guards/admin.guard';
 import {AuthGuard} from "./_guards/auth.guard";
-import {UserProfileComponent} from "./user-profile/user-profile/user-profile.component";
+import {UserProfileComponent} from "./user/user-profile/user-profile/user-profile.component";
 import {UserProfileResolver} from "./_resolvers/user-profile.resolver";
-import {UserProfileEditComponent} from "./user-profile/user-profile-edit/user-profile-edit.component";
+import {UserProfileEditComponent} from "./user/user-profile/user-profile-edit/user-profile-edit.component";
 import {PreventUnsavedChangesGuard} from "./_guards/prevent-unsaved-changes.guard";
 
 const routes: Routes = [

@@ -26,16 +26,20 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
 import { TourPackageCreationComponent } from './admin/tour-package-creation/tour-package-creation.component';
 import { DateInputComponent } from './_forms/date-input/date-input.component';
 import { FooterComponent } from './footer/footer.component';
-import { UserMessagesComponent } from './user-messages/user-messages.component';
+import { UserMessagesComponent } from './user/user-messages/user-messages.component';
 import { HasRoleDirective } from './_directives/has-role.directive';
 import { TourPackageEditComponent } from './tour_packages/tour-package-edit/tour-package-edit.component';
-import { UserProfileDetailComponent } from './user-profile/user-profile-detail/user-profile-detail.component';
-import { UserProfileEditComponent } from './user-profile/user-profile-edit/user-profile-edit.component';
-import { UserProfileComponent } from './user-profile/user-profile/user-profile.component';
+import { UserProfileDetailComponent } from './user/user-profile/user-profile-detail/user-profile-detail.component';
+import { UserProfileEditComponent } from './user/user-profile/user-profile-edit/user-profile-edit.component';
+import { UserProfileComponent } from './user/user-profile/user-profile/user-profile.component';
 import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
 import { UserModalComponent } from './modals/user-modal/user-modal.component';
 import { TourPhotoEditorComponent } from './tour_packages/tour-photo-editor/tour-photo-editor.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { UserMessagesListComponent } from './expert/user-messages-list/user-messages-list.component';
+import {PaginationModule} from "ngx-bootstrap/pagination";
+import {ButtonsModule} from "ngx-bootstrap/buttons";
+import {CollapseModule} from "ngx-bootstrap/collapse";
 
 @NgModule({
   declarations: [
@@ -67,6 +71,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     ConfirmDialogComponent,
     UserModalComponent,
     TourPhotoEditorComponent,
+    UserMessagesListComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,6 +82,9 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     ReactiveFormsModule,
     SharedModule,
     CarouselModule.forRoot(),
+    PaginationModule,
+    ButtonsModule,
+    CollapseModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

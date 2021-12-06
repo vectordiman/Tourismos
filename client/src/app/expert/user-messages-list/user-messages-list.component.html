@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col">
+    <div id="collapseBasic" *ngIf="currentSender" [collapse]="!messageMode" [isAnimated]="true">
+      <button class="btn btn-exit btn-sm" *ngIf="messageMode" (click)="messageModeChange()">
+        <i class="fa fa-times fa-lg"></i>
+      </button>
+      <app-user-messages [username]="currentSender.username"></app-user-messages>
+    </div>
+  </div>
+  <div class="col mr-2">
+    <table [class.table-clicked]="messageMode" class="table">
+      <tbody style="max-height: 438px">
+      <tr *ngFor="let sender of senders">
+        <th scope="row" style="cursor: pointer; text-align: center;" class="th" *ngIf="!messageMode" (click)="setCurrentSender(sender)">
+          <img
+            class="img-circle rounded-circle mr-2"
+            src="{{sender.photoUrl || './assets/user.png'}}"
+            alt="{{sender.photoUrl}}">
+          <div style="overflow-x: hidden; text-overflow: ellipsis;">{{sender.name}}</div>
+        </th>
+        <th scope="row" style="text-align: center;" *ngIf="messageMode"><img
+          class="img-circle rounded-circle mr-2"
+          src="{{sender.photoUrl || './assets/user.png'}}"
+          alt="{{sender.photoUrl}}">
+          <div style="overflow-x: hidden; text-overflow: ellipsis;">{{sender.name}}</div>
+        </th>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
