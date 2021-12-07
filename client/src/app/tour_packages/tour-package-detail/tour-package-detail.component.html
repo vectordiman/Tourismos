@@ -1,5 +1,6 @@
 <div class="tab-panel" *ngIf="package && packagePhotos">
-    <tabset class="member-tabset">
+  <div class="row header">
+    <tabset class="col member-tabset">
         <tab heading="Info">
             <div class="container mt-3">
                 <div class="row">
@@ -59,6 +60,10 @@
             </div>
         </tab>
     </tabset>
+    <div class="col-1">
+      <i class="fa fa-bookmark-o btn-nav fa-2x" (click)="addTour(package.id)"></i>
+    </div>
+  </div>
 </div>
 
 <div class="messages" *ngIf="package && user && package.expert">

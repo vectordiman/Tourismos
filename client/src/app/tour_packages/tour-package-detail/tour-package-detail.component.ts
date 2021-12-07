@@ -1,12 +1,14 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import { Photo } from 'src/app/_models/photo';
-import { TourPackage } from 'src/app/_models/tour-package';
-import { TourPackageService } from 'src/app/_services/tour-package.service';
+import {Photo} from 'src/app/_models/photo';
+import {TourPackage} from 'src/app/_models/tour-package';
+import {TourPackageService} from 'src/app/_services/tour-package.service';
 import {ActivatedRoute} from '@angular/router';
 import {User} from "../../_models/user";
 import {take} from "rxjs/operators";
 import {AccountService} from "../../_services/account.service";
 import {MessageService} from "../../_services/message.service";
+import {MemberService} from "../../_services/member.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-tour-package-detail',
@@ -19,7 +21,12 @@ export class TourPackageDetailComponent implements OnInit, OnDestroy {
   user!: User;
   messageMode = false;
 
-  constructor(private tourPackageService: TourPackageService, private route: ActivatedRoute, private accountService: AccountService, private messageService: MessageService) {
+  constructor(private tourPackageService: TourPackageService,
+              private route: ActivatedRoute,
+              private accountService: AccountService,
+              private messageService: MessageService,
+              private memberService: MemberService,
+              private toastr: ToastrService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
 
@@ -49,13 +56,16 @@ export class TourPackageDetailComponent implements OnInit, OnDestroy {
   }
 
   messageModeChange() {
-    if(!this.messageMode) {
+    if (!this.messageMode) {
       this.messageService.createHubConnection(this.user, this.package.expert.username);
-    }
-    else {
+    } else {
       this.messageService.stopHubConnection();
     }
     this.messageMode = !this.messageMode;
+  }
+
+  addTour(tourId: number) {
+    this.memberService.addTour(tourId).subscribe(() => {this.toastr.success('This tour has been successfully added to favorites')});
   }
 
 }

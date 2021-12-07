@@ -15,6 +15,7 @@ import {UserProfileComponent} from "./user/user-profile/user-profile/user-profil
 import {UserProfileResolver} from "./_resolvers/user-profile.resolver";
 import {UserProfileEditComponent} from "./user/user-profile/user-profile-edit/user-profile-edit.component";
 import {PreventUnsavedChangesGuard} from "./_guards/prevent-unsaved-changes.guard";
+import {FavoritesToursComponent} from "./user/favorites-tours/favorites-tours.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -36,6 +37,7 @@ const routes: Routes = [
   {path: 'errors', component: TestErrorsComponent},
   {path: 'not-found', component: NotFoundComponent},
   {path: 'server-error', component: ServerErrorComponent},
+  {path: 'favorites-tours', component: FavoritesToursComponent},
   {path: '**', component: NotFoundComponent, pathMatch: 'full'},
 ];
 

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
@@ -130,6 +132,45 @@ namespace API.Controllers
             var users = await _unitOfWork.UserRepository.GetExpertsAsync();
             var experts = _mapper.Map<IEnumerable<ExpertDto>>(users);
             return Ok(experts.ToArray());
+        }
+        
+        [HttpGet("tour-packages")]
+        public async Task<ActionResult<IEnumerable<TripDto>>> GetTourPackages()
+        {
+            var tourPackages = await _unitOfWork.UserRepository.GetTourPackages(User.GetUserId());
+            return Ok(_mapper.Map<IEnumerable<TripDto>>(tourPackages).ToArray());
+        }
+        
+        [HttpPost("add-tour/{tourId}")]
+        public async Task<ActionResult> AddTour(int tourId)
+        {
+            var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
+
+            var tourPackage = await _unitOfWork.TourPackageRepository.GetTourPackage(tourId);
+
+            if (tourPackage == null) return NotFound();
+
+            var tour = new Tour
+            {
+                Tourist = user,
+                TouristId = user.Id,
+                TourPackage = tourPackage,
+                TourPackageId = tourPackage.Id,
+                PurchaseDate = DateTime.Now,
+                Services = tourPackage.Services
+            };
+
+            if (user.Tours.FirstOrDefault(t => t.TouristId == user.Id && t.TourPackageId == tourPackage.Id) != null)
+                return BadRequest("This is already one of your favorite tours");
+            
+            user.Tours.Add(tour);
+
+            if (await _unitOfWork.Complete())
+            {
+                return Ok();
+            }
+
+            return BadRequest("Problem adding tour");
         }
     }
 }

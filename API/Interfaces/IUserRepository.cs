@@ -18,5 +18,7 @@ namespace API.Interfaces
         Task<IEnumerable<AppUser>> GetExpertsAsync();
 
         Task<UserDto> GetUserAsync(string username, bool isCurrentUser);
+
+        Task<IEnumerable<TourPackage>> GetTourPackages(int userId);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using API.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace API.Data
 {
@@ -39,7 +41,7 @@ namespace API.Data
 
         public async Task<AppUser> GetUserByUsernameAsync(string username)
         {
-            return await _context.Users.Include(p => p.Photos).SingleOrDefaultAsync(x => x.UserName == username);
+            return await _context.Users.Include(p => p.Photos).Include(t => t.Tours).SingleOrDefaultAsync(x => x.UserName == username);
         }
 
         public async Task<IEnumerable<AppUser>> GetExpertsAsync()
@@ -59,6 +61,19 @@ namespace API.Data
                 query = query.IgnoreQueryFilters();
 
             return await query.FirstOrDefaultAsync();
+        }
+        
+        public async Task<IEnumerable<TourPackage>> GetTourPackages(int userId)
+        {
+            var tours = _context.TourPackages
+                .Include(package => package.Tours)
+                .SelectMany(tp => tp.Tours);
+            var tourPackages = tours
+                .Include(p => p.TourPackage)
+                .Where(t => t.TouristId == userId)
+                .Select(tp => tp.TourPackage);
+
+            return await tourPackages.ToArrayAsync();
         }
     }
 }
