@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -131,6 +132,13 @@ namespace API.Controllers
             var users = await _unitOfWork.UserRepository.GetExpertsAsync();
             var experts = _mapper.Map<IEnumerable<ExpertDto>>(users);
             return Ok(experts.ToArray());
+        }
+        
+        [HttpGet("tour-packages")]
+        public async Task<ActionResult<IEnumerable<TripDto>>> GetTourPackages()
+        {
+            var tourPackages = await _unitOfWork.UserRepository.GetTourPackages(User.GetUserId());
+            return Ok(_mapper.Map<IEnumerable<TripDto>>(tourPackages).ToArray());
         }
         
         [HttpPost("add-tour/{tourId}")]

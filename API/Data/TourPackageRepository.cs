@@ -47,7 +47,7 @@ namespace API.Data
         {
             return await _context.TourPackages.Include(p => p.Photos).ToListAsync();
         }
-
+        
         public void Update(TourPackage package)
         {
             _context.TourPackages.Update(package);
