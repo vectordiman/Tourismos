@@ -160,6 +160,9 @@ namespace API.Controllers
                 Services = tourPackage.Services
             };
 
+            if (user.Tours.FirstOrDefault(t => t.TouristId == user.Id && t.TourPackageId == tourPackage.Id) != null)
+                return BadRequest("This is already one of your favorite tours");
+            
             user.Tours.Add(tour);
 
             if (await _unitOfWork.Complete())

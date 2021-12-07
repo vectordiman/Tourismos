@@ -7,6 +7,7 @@ import {User} from "../_models/user";
 import {map, take} from "rxjs/operators";
 import {of} from "rxjs";
 import {Photo} from "../_models/photo";
+import {TourPackage} from "../_models/tour-package";
 
 @Injectable({
   providedIn: 'root'
@@ -60,5 +61,9 @@ export class MemberService {
 
   addTour(tourId: number) {
     return  this.http.post(this.baseUrl + 'users/add-tour/' + tourId, {});
+  }
+
+  getTours() {
+    return this.http.get<TourPackage[]>(this.baseUrl + 'users/tour-packages');
   }
 }

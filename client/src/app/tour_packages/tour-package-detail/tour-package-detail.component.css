@@ -7,6 +7,23 @@
   box-shadow: none;
 }
 
+.btn-nav {
+  box-shadow: none;
+  cursor: pointer;
+  position: relative;
+  margin-left: -55px;
+  margin-top: 5px;
+  color: #5b62f4;
+}
+
+.btn-nav:hover {
+  color: #5056d0;
+}
+
+.btn-nav:active {
+  color: #5b62f4;
+}
+
 .messages {
   position: fixed;
   bottom: 15px;

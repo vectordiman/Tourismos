@@ -4,6 +4,15 @@
   width: 90px;
 }
 
+.btn-nav {
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  min-width: 200px;
+}
+
 .dropdown-toggle, .dropdown-item {
   cursor: pointer;
 }
@@ -13,4 +22,8 @@
   border: 2px solid white;
   display: inline;
   border-radius: 50%;
+}
+
+.vl {
+  border-left: 1px solid white;
 }
