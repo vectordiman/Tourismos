@@ -191,5 +191,20 @@ namespace API.Controllers
 
             return BadRequest("Problem deleting tour from user");
         }
+        
+        [HttpDelete("delete-all-tours")]
+        public async Task<ActionResult> DeleteAllTours()
+        {
+            var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
+            
+            user.Tours.Clear();
+
+            if (await _unitOfWork.Complete())
+            {
+                return Ok();
+            }
+
+            return BadRequest("Problem deleting all tours from user");
+        }
     }
 }
