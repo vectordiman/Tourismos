@@ -11,6 +11,11 @@
     <th scope="col">Start date</th>
     <th scope="col">End date</th>
     <th scope="col"></th>
+    <th scope="col" style="width: 2%" class="text-right">
+      <button class="btn btn-exit btn-sm" (click)="deleteAllTours()">
+        <i class="fa fa-trash fa-lg"></i>
+      </button>
+    </th>
   </tr>
   </thead>
   <tbody>
@@ -22,6 +27,11 @@
     <th scope="row">{{tour.end | date}}</th>
     <th scope="row">
       <button type="button" class="btn btn-outline-info btn-sm" routerLink="/trips/{{tour.id}}">Show</button>
+    </th>
+    <th scope="row" style="width: 2%">
+      <button class="btn btn-exit btn-sm" (click)="deleteTour(tour.id)">
+        <i class="fa fa-times fa-lg"></i>
+      </button>
     </th>
   </tr>
   </tbody>
