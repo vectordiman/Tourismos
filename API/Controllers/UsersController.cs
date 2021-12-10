@@ -172,5 +172,39 @@ namespace API.Controllers
 
             return BadRequest("Problem adding tour");
         }
+        
+        [HttpDelete("delete-tour/{tourId}")]
+        public async Task<ActionResult> DeleteTour(int tourId)
+        {
+            var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
+
+            var tour = user.Tours.FirstOrDefault(x => x.TourPackageId == tourId);
+
+            if (tour == null) return NotFound();
+            
+            user.Tours.Remove(tour);
+
+            if (await _unitOfWork.Complete())
+            {
+                return Ok();
+            }
+
+            return BadRequest("Problem deleting tour from user");
+        }
+        
+        [HttpDelete("delete-all-tours")]
+        public async Task<ActionResult> DeleteAllTours()
+        {
+            var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
+            
+            user.Tours.Clear();
+
+            if (await _unitOfWork.Complete())
+            {
+                return Ok();
+            }
+
+            return BadRequest("Problem deleting all tours from user");
+        }
     }
 }

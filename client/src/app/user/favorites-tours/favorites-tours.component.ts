@@ -22,4 +22,16 @@ export class FavoritesToursComponent implements OnInit {
       this.tours = result
     })
   }
+
+  deleteTour(tourId: number) {
+    this.memberService.deleteTour(tourId).subscribe(() => {
+      this.loadTours();
+    })
+  }
+
+  deleteAllTours() {
+    this.memberService.deleteAllTours().subscribe(() => {
+      this.loadTours();
+    })
+  }
 }

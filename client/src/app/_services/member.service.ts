@@ -63,6 +63,14 @@ export class MemberService {
     return  this.http.post(this.baseUrl + 'users/add-tour/' + tourId, {});
   }
 
+  deleteTour(tourId: number) {
+    return  this.http.delete(this.baseUrl + 'users/delete-tour/' + tourId, {});
+  }
+
+  deleteAllTours() {
+    return  this.http.delete(this.baseUrl + 'users/delete-all-tours', {});
+  }
+
   getTours() {
     return this.http.get<TourPackage[]>(this.baseUrl + 'users/tour-packages');
   }

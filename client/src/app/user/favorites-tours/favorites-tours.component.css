@@ -21,3 +21,13 @@ th {
   border-bottom: 2px solid #5b62f4;
   border-top: none;
 }
+
+.btn-exit {
+  width: 30px;
+  height: 30px;
+  background: none;
+}
+
+.fa-times, .fa-trash {
+  color: #5b62f4;
+}
