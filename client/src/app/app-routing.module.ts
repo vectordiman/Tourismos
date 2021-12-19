@@ -16,6 +16,8 @@ import {UserProfileResolver} from "./_resolvers/user-profile.resolver";
 import {UserProfileEditComponent} from "./user/user-profile/user-profile-edit/user-profile-edit.component";
 import {PreventUnsavedChangesGuard} from "./_guards/prevent-unsaved-changes.guard";
 import {FavoritesToursComponent} from "./user/favorites-tours/favorites-tours.component";
+import {ExpertPanelComponent} from "./expert/expert-panel/expert-panel.component";
+import {ExpertGuard} from "./_guards/expert.guard";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -31,6 +33,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard]},
+  {path: 'expert', component: ExpertPanelComponent, canActivate: [ExpertGuard]},
   {path: 'trips', component: TourPackageListComponent},
   {path: 'trips/:id', component: TourPackageDetailComponent},
   {path: 'not-found', component: NotFoundComponent},
