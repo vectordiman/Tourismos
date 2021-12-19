@@ -41,6 +41,7 @@ import {PaginationModule} from "ngx-bootstrap/pagination";
 import {ButtonsModule} from "ngx-bootstrap/buttons";
 import {CollapseModule} from "ngx-bootstrap/collapse";
 import { FavoritesToursComponent } from './user/favorites-tours/favorites-tours.component';
+import { ExpertPanelComponent } from './expert/expert-panel/expert-panel.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { FavoritesToursComponent } from './user/favorites-tours/favorites-tours.
     TourPhotoEditorComponent,
     UserMessagesListComponent,
     FavoritesToursComponent,
+    ExpertPanelComponent,
   ],
   imports: [
     BrowserModule,
