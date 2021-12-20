@@ -15,7 +15,8 @@ namespace API.Helpers
             CreateMap<AppUser, UserDto>()
                 .ForMember(dest => dest.PhotoUrl,
                     opt => opt.MapFrom(src =>
-                        src.Photos.FirstOrDefault(x => x.IsMain).Url));
+                        src.Photos.FirstOrDefault(x => x.IsMain).Url))
+                .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.UserRoles.SingleOrDefault().Role));
             CreateMap<UserDto, AppUser>();
             CreateMap<TourPackage, TripDto>()
                 .ForMember(dest => dest.PhotoUrl,

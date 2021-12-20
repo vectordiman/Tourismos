@@ -25,4 +25,8 @@ export class AdminService {
   getExperts() {
     return this.http.get<Partial<Expert[]>>(this.baseUrl + "users/expert");
   }
+
+  getAdmins() {
+    return this.http.get<Partial<User[]>>(this.baseUrl + "users/admin");
+  }
 }

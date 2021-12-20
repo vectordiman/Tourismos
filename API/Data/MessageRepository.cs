@@ -126,6 +126,8 @@ namespace API.Data
             var messages = await _context.Messages
                 .Where(m => m.Recipient.UserName == currentUsername)
                 .Include(s => s.Sender)
+                .Include(s => s.Sender.UserRoles)
+                .ThenInclude(s => s.Role)
                 .Include(p => p.Sender.Photos)
                 .ToListAsync();
 
