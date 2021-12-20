@@ -48,6 +48,11 @@ namespace API.Data
         {
             return await _context.Users.Include(p => p.Photos).Where(u => u.UserRoles.Single().Role.Name == "Expert").ToArrayAsync();
         }
+        
+        public async Task<IEnumerable<AppUser>> GetAdminsAsync()
+        {
+            return await _context.Users.Include(p => p.Photos).Where(u => u.UserRoles.Single().Role.Name == "Admin").ToArrayAsync();
+        }
 
         public async Task<UserDto> GetUserAsync(string username, bool isCurrentUser)
         {

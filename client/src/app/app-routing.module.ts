@@ -18,6 +18,7 @@ import {PreventUnsavedChangesGuard} from "./_guards/prevent-unsaved-changes.guar
 import {FavoritesToursComponent} from "./user/favorites-tours/favorites-tours.component";
 import {ExpertPanelComponent} from "./expert/expert-panel/expert-panel.component";
 import {ExpertGuard} from "./_guards/expert.guard";
+import {MessagesComponent} from "./messages/messages.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -41,6 +42,7 @@ const routes: Routes = [
   {path: 'not-found', component: NotFoundComponent},
   {path: 'server-error', component: ServerErrorComponent},
   {path: 'favorites-tours', component: FavoritesToursComponent},
+  {path: 'messages', component: MessagesComponent},
   {path: '**', component: NotFoundComponent, pathMatch: 'full'},
 ];
 

@@ -29,7 +29,7 @@ export class UserMessagesListComponent implements OnInit, OnDestroy {
 
   loadSenders(username: string) {
     this.messageService.getSenders(username).subscribe(result => {
-      this.senders = result
+      this.senders = result.filter(user => user.role !== 'Admin')
     })
   }
 

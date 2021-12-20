@@ -1,0 +1,31 @@
+<div class="row" *ngIf="admins">
+  <div class="col">
+    <div id="collapseBasic" *ngIf="currentAdmin" [collapse]="!messageMode" [isAnimated]="true">
+      <button class="btn btn-exit btn-sm" *ngIf="messageMode" (click)="messageModeChange()">
+        <i class="fa fa-times fa-lg"></i>
+      </button>
+      <app-user-messages [username]="currentAdmin.username"></app-user-messages>
+    </div>
+  </div>
+  <div class="col mr-2">
+    <table [class.table-clicked]="messageMode" class="table">
+      <tbody style="max-height: 438px">
+      <tr *ngFor="let admin of admins">
+        <th scope="row" style="cursor: pointer; text-align: center;" class="th" *ngIf="!messageMode" (click)="setCurrentSender(admin!)">
+          <img
+            class="img-circle rounded-circle mr-2"
+            src="{{admin?.photoUrl || './assets/user.png'}}"
+            alt="{{admin?.photoUrl}}">
+          <div style="overflow-x: hidden; text-overflow: ellipsis;">{{admin?.username | titlecase}}</div>
+        </th>
+        <th scope="row" style="text-align: center;" *ngIf="messageMode"><img
+          class="img-circle rounded-circle mr-2"
+          src="{{admin?.photoUrl || './assets/user.png'}}"
+          alt="{{admin?.photoUrl}}">
+          <div style="overflow-x: hidden; text-overflow: ellipsis;">{{admin?.username | titlecase}}</div>
+        </th>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
