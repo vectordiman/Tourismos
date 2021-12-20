@@ -1,0 +1,60 @@
+.img-circle {
+  max-height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th {
+  vertical-align: middle;
+}
+
+.btn {
+  box-shadow: none;
+  height: 40px;
+  width: 90px;
+}
+
+table {
+  border-collapse: collapse;
+  border-radius: 5px;
+  border-style: hidden; /* hide standard table (collapsed) border */
+  box-shadow: 0 0 0 1px #5b62f4; /* this draws the table border  */
+}
+
+.table th, .table .th {
+  border: none;
+  overflow: hidden;
+}
+
+.table .th:hover {
+  border-collapse: collapse;
+  border-radius: 5px;
+  border: none; /* hide standard table (collapsed) border */
+  box-shadow: 0 0 0 1px #5b62f4; /* this draws the table border  */
+  background: rgba(0, 0, 0, 0.2);
+}
+
+table tbody {
+  flex: 1 1 auto;
+  display: block;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.btn-exit {
+  width: 30px;
+  height: 30px;
+  background: none;
+  position: relative;
+  right: -438px;
+  bottom: -30px;
+  z-index: 3;
+}
+
+.fa-times {
+  color: #5b62f4;
+}
+
+.table-clicked {
+  margin-top: 30px;
+}

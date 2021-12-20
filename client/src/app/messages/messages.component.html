@@ -53,7 +53,7 @@
       </th>
       <th scope="row">{{message.messageSent | timeago}}</th>
       <th scope="row" style="width: 2%">
-        <button class="btn btn-exit btn-sm" (click)="$event.stopPropagation();deleteMessage(message.id)">
+        <button class="btn btn-sm" (click)="$event.stopPropagation();deleteMessage(message.id)">
           <i class="fa fa-times fa-lg"></i>
         </button>
       </th>
@@ -75,4 +75,13 @@
     firstText="&laquo;"
     lastText="&raquo;">
   </pagination>
+</div>
+
+<div class="messages" *ngIf="user">
+  <div *ngIf="user.role == 'Expert'">
+    <app-admin-messages-list></app-admin-messages-list>
+  </div>
+  <div *ngIf="user.role == 'Admin'">
+    <app-expert-messages-list></app-expert-messages-list>
+  </div>
 </div>
