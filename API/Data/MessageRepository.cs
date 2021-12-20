@@ -126,6 +126,7 @@ namespace API.Data
             var messages = await _context.Messages
                 .Where(m => m.Recipient.UserName == currentUsername)
                 .Include(s => s.Sender)
+                .Include(p => p.Sender.Photos)
                 .ToListAsync();
 
             var senders = _mapper.Map<IEnumerable<UserDto>>(messages.Select(m => m.Sender).Distinct());
