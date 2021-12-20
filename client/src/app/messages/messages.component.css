@@ -1,0 +1,36 @@
+.img-circle {
+  max-height: 50px;
+}
+
+th {
+  vertical-align: middle;
+}
+
+.btn {
+  box-shadow: none;
+  height: 40px;
+  width: 90px;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #5b62f4;
+  border-color: #5b62f4;
+  border-left-color: rgb(0, 92, 191);
+}
+
+.table th {
+  border-bottom: 1px solid #5b62f4;
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #5b62f4;
+  border-top: none;
+}
+
+.fa-times, .fa-trash {
+  color: #5b62f4;
+}

@@ -42,6 +42,7 @@ import {ButtonsModule} from "ngx-bootstrap/buttons";
 import {CollapseModule} from "ngx-bootstrap/collapse";
 import { FavoritesToursComponent } from './user/favorites-tours/favorites-tours.component';
 import { ExpertPanelComponent } from './expert/expert-panel/expert-panel.component';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { ExpertPanelComponent } from './expert/expert-panel/expert-panel.compone
     UserMessagesListComponent,
     FavoritesToursComponent,
     ExpertPanelComponent,
+    MessagesComponent,
   ],
   imports: [
     BrowserModule,
