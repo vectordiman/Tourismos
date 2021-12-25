@@ -31,12 +31,17 @@ const routes: Routes = [
       {path: 'users/:username/edit', component: UserProfileEditComponent, canDeactivate: [PreventUnsavedChangesGuard]}
     ]
   },
+  {
+    path:'',
+    children: [
+      {path: 'tours', component: TourPackageListComponent},
+      {path: 'tours/:id', component: TourPackageDetailComponent},
+    ]
+  },
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard]},
   {path: 'expert', component: ExpertPanelComponent, canActivate: [ExpertGuard]},
-  {path: 'trips', component: TourPackageListComponent},
-  {path: 'trips/:id', component: TourPackageDetailComponent},
   {path: 'not-found', component: NotFoundComponent},
   {path: 'errors', component: TestErrorsComponent},
   {path: 'not-found', component: NotFoundComponent},

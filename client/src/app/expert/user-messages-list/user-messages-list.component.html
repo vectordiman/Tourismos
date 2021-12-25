@@ -16,13 +16,13 @@
             class="img-circle rounded-circle mr-2"
             src="{{sender.photoUrl || './assets/user.png'}}"
             alt="{{sender.photoUrl}}">
-          <div style="overflow-x: hidden; text-overflow: ellipsis;">{{sender.name}}</div>
+          <div style="overflow-x: hidden; text-overflow: ellipsis;">{{sender.name || sender.username | titlecase}}</div>
         </th>
         <th scope="row" style="text-align: center;" *ngIf="messageMode"><img
           class="img-circle rounded-circle mr-2"
           src="{{sender.photoUrl || './assets/user.png'}}"
           alt="{{sender.photoUrl}}">
-          <div style="overflow-x: hidden; text-overflow: ellipsis;">{{sender.name}}</div>
+          <div style="overflow-x: hidden; text-overflow: ellipsis;">{{sender.name || sender.username | titlecase}}</div>
         </th>
       </tr>
       </tbody>

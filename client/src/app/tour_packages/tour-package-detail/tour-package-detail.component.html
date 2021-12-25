@@ -67,7 +67,7 @@
 </div>
 
 <div class="messages" *ngIf="package && user && package.expert">
-  <div *ngIf="package.expert.username != user.username">
+  <div *appHasRole="'Client'">
   <button class="btn btn-outline-info btn-sm" *ngIf="!messageMode" (click)="messageModeChange()">
     <i class="fa fa-comments-o fa-2x"></i>
   </button>

@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse" id="navbarColor02">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/">Tours</a>
+          <a class="nav-link" routerLink="/tours">Tours</a>
         </li>
         <ng-container *ngIf="accountService.currentUser$ | async">
           <li *appHasRole='"Admin"' class="nav-item">
