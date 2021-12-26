@@ -10,6 +10,8 @@ namespace API.Interfaces
         
         IMessageRepository MessageRepository { get; }
 
+        IQuestionRepository QuestionRepository { get; }
+
         Task<bool> Complete();
 
         bool HasChanges();
