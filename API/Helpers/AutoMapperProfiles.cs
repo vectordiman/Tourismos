@@ -42,6 +42,7 @@ namespace API.Helpers
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id));
 
             CreateMap<ExpertDto, AppUser>();
+            CreateMap<PopularQuestion, PopularQuestionDto>();
         }
     }
 }
