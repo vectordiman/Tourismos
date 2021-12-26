@@ -1,1 +1,25 @@
-<h1>Homepage</h1>
+<h3>Answers to popular questions:</h3>
+<div class="row" [hidden]="loading" *ngIf="popularQuestions && popularQuestions.length > 0">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col" style="width: 7%"></th>
+      <th scope="col" style="width: 50%"></th>
+      <th scope="col" style="width: 2%"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let popularQuestion of popularQuestions">
+      <th scope="row"><h1 class="question-id" [class.question-id-active]="popularQuestion.displayed"><strong *ngIf="popularQuestion.id < 10">0</strong><b>{{popularQuestion.id}}</b></h1></th>
+      <th scope="row"><h3 class="question">{{popularQuestion.question | titlecase}}</h3><h5 class="answer" [class.answer-active]="!popularQuestion.displayed">{{popularQuestion.answer}}</h5></th>
+      <th scope="row" style="width: 2%">
+        <button class="btn btn-sm" (click)="popularQuestion.displayed = !popularQuestion.displayed">
+          <i *ngIf="!popularQuestion.displayed" class="fa fa-angle-down fa-lg"></i>
+          <i *ngIf="popularQuestion.displayed" class="fa fa-angle-up fa-lg"></i>
+        </button>
+      </th>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<br>

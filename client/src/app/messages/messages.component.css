@@ -8,8 +8,6 @@ th {
 
 .btn {
   box-shadow: none;
-  height: 40px;
-  width: 90px;
 }
 
 .btn-primary:not(:disabled):not(.disabled).active,
