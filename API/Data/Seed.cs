@@ -62,5 +62,22 @@ namespace API.Data
             await context.SaveChangesAsync();
 
         }
+        
+        public static async Task SeedPopularQuestions(DataContext context)
+        {
+            if (await context.PopularQuestions.AnyAsync()) return;
+
+            var questionsData = await System.IO.File.ReadAllTextAsync("Data/Seeds/PopularQuestionSeedData.json");
+            var questions = JsonSerializer.Deserialize<List<PopularQuestion>>(questionsData);
+            if (questions == null) return;
+
+            foreach (var question in questions)
+            {
+                await context.PopularQuestions.AddAsync(question);
+            }
+
+            await context.SaveChangesAsync();
+
+        }
     }
 }

@@ -1,1 +1,39 @@
-<h1>Homepage</h1>
+<carousel [isAnimated]="true">
+  <slide *ngFor="let hotPackage of hotTourPackages" style="cursor: pointer" routerLink="tours/{{hotPackage.id}}">
+    <section class="jumbotron text-right section-jumbotron"
+             [ngStyle]="{'background-image': getPhotoUrl(hotPackage.photoUrl)}">
+      <div class="container container-body" ngSwitch="{{hotPackage.description}}"
+           [ngStyle]="{'background-image': getPhotoUrl(hotPackage.photoUrl)}">
+        <h1 class="jumbotron-heading text-header-main text-center">{{hotPackage.name}}</h1>
+        <p class="lead text-center" *ngSwitchCase="''">No description provided</p>
+        <p class="lead text-center" *ngSwitchDefault>{{hotPackage.description}}</p>
+        <p class="lead text-center">{{hotPackage.price}}$</p>
+        <p class="lead text-center">{{hotPackage.start | date}} - {{hotPackage.end | date}}</p>
+      </div>
+    </section>
+  </slide>
+</carousel>
+<h3 class="mt-4">Answers to popular questions:</h3>
+<div class="row mb-4" [hidden]="loading" *ngIf="popularQuestions && popularQuestions.length > 0">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col" style="width: 7%"></th>
+      <th scope="col" style="width: 50%"></th>
+      <th scope="col" style="width: 2%"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let popularQuestion of popularQuestions">
+      <th scope="row"><h1 class="question-id" [class.question-id-active]="popularQuestion.displayed"><strong *ngIf="popularQuestion.id < 10">0</strong><b>{{popularQuestion.id}}</b></h1></th>
+      <th scope="row"><h3 class="question">{{popularQuestion.question | titlecase}}</h3><h5 class="answer" [class.answer-active]="!popularQuestion.displayed">{{popularQuestion.answer}}</h5></th>
+      <th scope="row" style="width: 2%">
+        <button class="btn btn-sm" (click)="popularQuestion.displayed = !popularQuestion.displayed">
+          <i *ngIf="!popularQuestion.displayed" class="fa fa-angle-down fa-lg"></i>
+          <i *ngIf="popularQuestion.displayed" class="fa fa-angle-up fa-lg"></i>
+        </button>
+      </th>
+    </tr>
+    </tbody>
+  </table>
+</div>
