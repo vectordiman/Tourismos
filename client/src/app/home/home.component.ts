@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {PopularQuestionsService} from "../_services/popular-questions.service";
 import {PopularQuestion} from "../_models/popular-question";
+import {TourPackageService} from "../_services/tour-package.service";
+import {TourPackage} from "../_models/tour-package";
 
 @Component({
   selector: 'app-home',
@@ -9,11 +11,13 @@ import {PopularQuestion} from "../_models/popular-question";
 })
 export class HomeComponent implements OnInit {
   popularQuestions: PopularQuestion[] = [];
+  hotTourPackages: TourPackage[] = [];
   loading = false;
 
-  constructor(private popularQuestionsService: PopularQuestionsService) { }
+  constructor(private popularQuestionsService: PopularQuestionsService, private tourPackageService: TourPackageService) { }
 
   ngOnInit(): void {
+    this.loadHotTourPackages()
     this.loadPopularQuestions()
   }
 
@@ -23,5 +27,15 @@ export class HomeComponent implements OnInit {
       this.popularQuestions = result
       this.loading = false;
     })
+  }
+
+  loadHotTourPackages() {
+    this.tourPackageService.getHotTourPackages().subscribe(result => {
+      this.hotTourPackages = result
+    })
+  }
+
+  getPhotoUrl(photoUrl: string) {
+    return 'url(' + photoUrl + ')'
   }
 }

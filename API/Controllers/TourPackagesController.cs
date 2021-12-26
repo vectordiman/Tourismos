@@ -33,6 +33,14 @@ namespace API.Controllers
             var trips = _mapper.Map<IEnumerable<TripDto>>(packages);
             return Ok(trips.ToArray());
         }
+        
+        [HttpGet("hot",Name = "GetHotTourPackages")]
+        public async Task<ActionResult<IEnumerable<TripDto>>> GetHotTourPackages()
+        {
+            var packages = await _unitOfWork.TourPackageRepository.GetHotTourPackagesAsync();
+            var trips = _mapper.Map<IEnumerable<TripDto>>(packages);
+            return Ok(trips.ToArray());
+        }
 
         [HttpGet("{id}", Name = "GetTourPackage")]
         public async Task<ActionResult<TripDto>> GetTourPackage(int id)

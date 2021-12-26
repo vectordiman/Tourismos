@@ -1,9 +1,49 @@
-.img-circle {
-  max-height: 50px;
+.section-jumbotron {
+  background-size: cover;
+  background: no-repeat center;
+  border-radius: 10px;
+}
+
+.text-header-main {
+  color: #eff0f0;
+  font-size: 72px;
+  text-transform: uppercase;
+  text-shadow: 0 0 5px black;
+}
+
+.lead {
+  color: #eff0f0;
+  font-style: italic;
+  text-shadow: 0 0 5px black;
+  padding-right: 3em;
+  padding-left: 3em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 512ch;
+}
+
+.container-body {
+  background: no-repeat center;
+  background-size: cover;
+  padding-top: 7em;
+  height: 30em;
+  box-shadow: 0 0 10px 0 black;
+}
+
+.tour-img {
+  z-index: 5;
+  margin-top: -12em;
+  color: #eff0f0;
+  font-weight: bolder;
+  border: none;
+  width: 32px;
+  height: 32px;
+  text-shadow: 0 0 2px black;
 }
 
 th {
-  vertical-align: mathematical;
+  vertical-align: top;
   transition: 0.3s;
 }
 
