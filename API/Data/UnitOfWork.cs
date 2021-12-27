@@ -18,6 +18,7 @@ namespace API.Data
         public IUserRepository UserRepository => new UserRepository(_context, _mapper);
         public ITourPackageRepository TourPackageRepository => new TourPackageRepository(_context);
         public IMessageRepository MessageRepository => new MessageRepository(_context, _mapper);
+        public IServiceRepository ServiceRepository => new ServiceRepository(_context);
 
         public async Task<bool> Complete()
         {

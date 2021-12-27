@@ -62,5 +62,22 @@ namespace API.Data
             await context.SaveChangesAsync();
 
         }
+
+        public static async Task SeedServices(DataContext context)
+        {
+            if (await context.Services.AnyAsync()) return;
+
+            var serviceData = await System.IO.File.ReadAllTextAsync("Data/Seeds/ServiceSeedData.json");
+            var services = JsonSerializer.Deserialize<List<Service>>(serviceData);
+            if (services == null) return;
+
+            foreach (var service in services)
+            {
+                await context.Services.AddAsync(service);
+            }
+
+            await context.SaveChangesAsync();
+
+        }
     }
 }
