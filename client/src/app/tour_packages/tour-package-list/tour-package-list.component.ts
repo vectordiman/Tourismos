@@ -12,7 +12,7 @@ export class TourPackageListComponent implements OnInit {
   packages: TourPackage[] = [];
   pagination!: Pagination;
   pageNumber = 1;
-  pageSize = 6;
+  pageSize = 9;
   loading = false;
 
   constructor(private tourPackageService: TourPackageService) { }

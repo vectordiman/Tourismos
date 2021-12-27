@@ -6,7 +6,7 @@
 <div class="d-flex justify-content-center" *ngIf="packages && packages.length > 0 && pagination && !loading">
   <pagination
     [boundaryLinks]="true"
-    [totalItems]="2 * pagination.totalItems - 2"
+    [totalItems]="pagination.totalItems"
     [itemsPerPage]="pagination.itemsPerPage"
     [(ngModel)]="pagination.currentPage"
     (pageChanged)="pageChanged($event)"
