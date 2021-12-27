@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TourPackage } from 'src/app/_models/tour-package';
 import { TourPackageService } from 'src/app/_services/tour-package.service';
+import {Pagination} from "../../_models/pagination";
 
 @Component({
   selector: 'app-tour-package-list',
@@ -9,6 +10,10 @@ import { TourPackageService } from 'src/app/_services/tour-package.service';
 })
 export class TourPackageListComponent implements OnInit {
   packages: TourPackage[] = [];
+  pagination!: Pagination;
+  pageNumber = 1;
+  pageSize = 6;
+  loading = false;
 
   constructor(private tourPackageService: TourPackageService) { }
 
@@ -17,10 +22,20 @@ export class TourPackageListComponent implements OnInit {
   }
 
   getTourPackages() {
-    this.tourPackageService.getTourPackages().subscribe(packages => {
-      console.log(packages);
-      this.packages = packages;
+    this.loading = true;
+    this.tourPackageService.getTourPackages(this.pageNumber, this.pageSize,).subscribe(response => {
+      this.packages = response.result;
+      this.pagination = response.pagination;
+      console.log(response);
+      this.loading = false;
     });
+  }
+
+  pageChanged(event: any) {
+    if (this.pageNumber !== event.page) {
+      this.pageNumber = event.page;
+      this.getTourPackages();
+    }
   }
 
 }

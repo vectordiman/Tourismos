@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Photo } from '../_models/photo';
 import { TourPackage } from '../_models/tour-package';
+import {getPaginatedResult, getPaginationHeaders} from "./paginationHelpers";
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,10 @@ export class TourPackageService {
 
   constructor(private http: HttpClient) { }
 
-  getTourPackages(): Observable<TourPackage[]> {
-    return this.http.get<TourPackage[]>(this.baseUrl + 'tourpackages');
+  getTourPackages(pageNumber: number, pageSize: number) {
+    let params = getPaginationHeaders(pageNumber, pageSize);
+
+    return getPaginatedResult<TourPackage[]>(this.baseUrl + 'tourpackages', params, this.http);
   }
 
   getHotTourPackages(): Observable<TourPackage[]> {

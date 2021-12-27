@@ -3,3 +3,17 @@
         <app-tour-package-card [package]="package"></app-tour-package-card>
     </div>
 </div>
+<div class="d-flex justify-content-center" *ngIf="packages && packages.length > 0 && pagination && !loading">
+  <pagination
+    [boundaryLinks]="true"
+    [totalItems]="2 * pagination.totalItems - 2"
+    [itemsPerPage]="pagination.itemsPerPage"
+    [(ngModel)]="pagination.currentPage"
+    (pageChanged)="pageChanged($event)"
+    [maxSize]="pagination.itemsPerPage"
+    previousText="&lsaquo;"
+    nextText="&rsaquo;"
+    firstText="&laquo;"
+    lastText="&raquo;">
+  </pagination>
+</div>
