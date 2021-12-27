@@ -11,11 +11,16 @@
     <div class="collapse navbar-collapse" id="navbarColor02">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/">Tours</a>
+          <a class="nav-link" routerLink="/tours">Tours</a>
         </li>
-        <li *appHasRole='"Admin"' class="nav-item">
-          <a class="nav-link" routerLink="/admin">Admin</a>
-        </li>
+        <ng-container *ngIf="accountService.currentUser$ | async">
+          <li *appHasRole='"Admin"' class="nav-item">
+            <a class="nav-link" routerLink="/admin">Admin</a>
+          </li>
+          <li *appHasRole='"Expert"' class="nav-item">
+            <a class="nav-link" routerLink="/expert">Expert</a>
+          </li>
+        </ng-container>
         <li class="nav-item dropdown" dropdown>
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true"
              aria-expanded="false" dropdownToggle>Actions</a>
@@ -26,11 +31,12 @@
         </li>
       </ul>
       <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
-        <i class="btn-outline-info btn-sm fa fa-bell-o text-light mr-3 btn-nav"></i>
+        <i class="btn-outline-info btn-sm fa fa-bell-o text-light mr-3 btn-nav" routerLink="/messages"></i>
         <i class="btn-outline-info btn-sm fa fa-bookmark-o text-light mr-2 btn-nav" routerLink="/favorites-tours"></i>
         <span class="vl ml-2 mr-3"></span>
         <a class="dropdown-toggle text-light mr-2" data-bs-toggle="dropdown" role="button" aria-haspopup="true"
-           aria-expanded="false" dropdownToggle style="text-decoration:none">{{user.name || user.username | titlecase}}</a>
+           aria-expanded="false" dropdownToggle
+           style="text-decoration:none">{{user.name || user.username | titlecase}}</a>
         <img class="account-img" src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}">
         <div class="dropdown-menu mt-3" *dropdownMenu>
           <div class="dropdown-item" routerLink="/users/{{user.username}}">Profile</div>

@@ -41,6 +41,10 @@ import {PaginationModule} from "ngx-bootstrap/pagination";
 import {ButtonsModule} from "ngx-bootstrap/buttons";
 import {CollapseModule} from "ngx-bootstrap/collapse";
 import { FavoritesToursComponent } from './user/favorites-tours/favorites-tours.component';
+import { ExpertPanelComponent } from './expert/expert-panel/expert-panel.component';
+import { MessagesComponent } from './messages/messages.component';
+import { ExpertMessagesListComponent } from './admin/expert-messages-list/expert-messages-list.component';
+import { AdminMessagesListComponent } from './expert/admin-messages-list/admin-messages-list.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +78,10 @@ import { FavoritesToursComponent } from './user/favorites-tours/favorites-tours.
     TourPhotoEditorComponent,
     UserMessagesListComponent,
     FavoritesToursComponent,
+    ExpertPanelComponent,
+    MessagesComponent,
+    ExpertMessagesListComponent,
+    AdminMessagesListComponent
   ],
   imports: [
     BrowserModule,

@@ -16,6 +16,7 @@ namespace API.Interfaces
         void DeletePackage(TourPackage package);
 
         Task<IEnumerable<TourPackage>> GetTourPackagesAsync();
+        Task<IEnumerable<TourPackage>> GetHotTourPackagesAsync();
 
         Task<TourPackage> GetTourPackage(int id);
 

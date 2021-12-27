@@ -1,0 +1,7 @@
+﻿[
+  '{{repeat(10)}}',
+  {
+    Question: '{{lorem(4, "words")}}',
+    Answer: '{{lorem(1, "paragraphs")}}'
+  }
+]

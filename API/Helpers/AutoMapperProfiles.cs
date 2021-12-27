@@ -12,7 +12,11 @@ namespace API.Helpers
             CreateMap<RegisterDto, AppUser>();
             CreateMap<UserUpdateDto, AppUser>();
             CreateMap<Photo, PhotoDto>();
-            CreateMap<AppUser, UserDto>();
+            CreateMap<AppUser, UserDto>()
+                .ForMember(dest => dest.PhotoUrl,
+                    opt => opt.MapFrom(src =>
+                        src.Photos.FirstOrDefault(x => x.IsMain).Url))
+                .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.UserRoles.SingleOrDefault().Role));
             CreateMap<UserDto, AppUser>();
             CreateMap<TourPackage, TripDto>()
                 .ForMember(dest => dest.PhotoUrl,
@@ -38,6 +42,7 @@ namespace API.Helpers
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id));
 
             CreateMap<ExpertDto, AppUser>();
+            CreateMap<PopularQuestion, PopularQuestionDto>();
         }
     }
 }

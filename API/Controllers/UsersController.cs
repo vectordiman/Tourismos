@@ -134,6 +134,14 @@ namespace API.Controllers
             return Ok(experts.ToArray());
         }
         
+        [HttpGet("admin")]
+        public async Task<ActionResult<IEnumerable<ExpertDto>>> GetAdmins()
+        {
+            var users = await _unitOfWork.UserRepository.GetAdminsAsync();
+            var experts = _mapper.Map<IEnumerable<ExpertDto>>(users);
+            return Ok(experts.ToArray());
+        }
+        
         [HttpGet("tour-packages")]
         public async Task<ActionResult<IEnumerable<TripDto>>> GetTourPackages()
         {

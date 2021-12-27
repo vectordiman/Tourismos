@@ -16,6 +16,9 @@ import {UserProfileResolver} from "./_resolvers/user-profile.resolver";
 import {UserProfileEditComponent} from "./user/user-profile/user-profile-edit/user-profile-edit.component";
 import {PreventUnsavedChangesGuard} from "./_guards/prevent-unsaved-changes.guard";
 import {FavoritesToursComponent} from "./user/favorites-tours/favorites-tours.component";
+import {ExpertPanelComponent} from "./expert/expert-panel/expert-panel.component";
+import {ExpertGuard} from "./_guards/expert.guard";
+import {MessagesComponent} from "./messages/messages.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -28,16 +31,23 @@ const routes: Routes = [
       {path: 'users/:username/edit', component: UserProfileEditComponent, canDeactivate: [PreventUnsavedChangesGuard]}
     ]
   },
+  {
+    path:'',
+    children: [
+      {path: 'tours', component: TourPackageListComponent},
+      {path: 'tours/:id', component: TourPackageDetailComponent},
+    ]
+  },
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard]},
-  {path: 'trips', component: TourPackageListComponent},
-  {path: 'trips/:id', component: TourPackageDetailComponent},
+  {path: 'expert', component: ExpertPanelComponent, canActivate: [ExpertGuard]},
   {path: 'not-found', component: NotFoundComponent},
   {path: 'errors', component: TestErrorsComponent},
   {path: 'not-found', component: NotFoundComponent},
   {path: 'server-error', component: ServerErrorComponent},
   {path: 'favorites-tours', component: FavoritesToursComponent},
+  {path: 'messages', component: MessagesComponent},
   {path: '**', component: NotFoundComponent, pathMatch: 'full'},
 ];
 

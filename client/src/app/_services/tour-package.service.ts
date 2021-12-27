@@ -18,6 +18,10 @@ export class TourPackageService {
     return this.http.get<TourPackage[]>(this.baseUrl + 'tourpackages');
   }
 
+  getHotTourPackages(): Observable<TourPackage[]> {
+    return this.http.get<TourPackage[]>(this.baseUrl + 'tourpackages/hot');
+  }
+
   getTourPackage(id: string): Observable<TourPackage> {
     return this.http.get<TourPackage>(this.baseUrl + 'tourpackages/' + id);
   }

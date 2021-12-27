@@ -47,6 +47,10 @@ namespace API.Data
         {
             return await _context.TourPackages.Include(p => p.Photos).ToListAsync();
         }
+        public async Task<IEnumerable<TourPackage>> GetHotTourPackagesAsync()
+        {
+            return await _context.TourPackages.Include(p => p.Photos).OrderByDescending(tp => tp.Start).Take(5).ToListAsync();
+        }
         
         public void Update(TourPackage package)
         {
