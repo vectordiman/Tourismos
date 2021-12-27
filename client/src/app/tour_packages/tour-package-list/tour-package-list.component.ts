@@ -23,7 +23,7 @@ export class TourPackageListComponent implements OnInit {
 
   getTourPackages() {
     this.loading = true;
-    this.tourPackageService.getTourPackages(this.pageNumber, this.pageSize,).subscribe(response => {
+    this.tourPackageService.getTourPackages(this.pageNumber, this.pageSize).subscribe(response => {
       this.packages = response.result;
       this.pagination = response.pagination;
       console.log(response);

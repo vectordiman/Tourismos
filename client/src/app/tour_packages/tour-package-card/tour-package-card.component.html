@@ -1,7 +1,7 @@
 <div class="card">
     <img src="{{package.photoUrl}}" class="card-img-top" alt="{{package.name}}">
     <div class="card-body">
-      <h5 class="card-title">{{package.name}}</h5>
+      <h5 class="card-title">{{package.name | titlecase}}</h5>
       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
       <button routerLink='{{package.id}}' class="btn btn-outline-info btn-sm">Learn more</button>
     </div>
