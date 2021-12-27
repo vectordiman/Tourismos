@@ -61,6 +61,7 @@ namespace API.Data
 
         public DbSet<Photo> Photos { get; set; }
         public DbSet<TourPackage> TourPackages { get; set; }
+        public DbSet<Service> Services { get; set; }
         public DbSet<Message> Messages { get; set; }
 
         public DbSet<PopularQuestion> PopularQuestions { get; set; }

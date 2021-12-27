@@ -1,0 +1,22 @@
+[
+  '{{repeat(10)}}',
+  {
+    Name: '{{lorem(4, "words")}}',
+    Price: '{{integer(100, 5000)}}',
+    Description: '{{lorem(2, "paragraphs")}}',
+    Photos: [
+      {
+        Url: function(num){
+          return 'https://picsum.photos/1920/1080?random=' + num.integer(1, 500);
+        },
+        IsMain: true
+      },
+      {
+        Url: function(num){
+          return 'https://picsum.photos/1920/1080?random=' + num.integer(1, 500);
+        },
+        IsMain: true
+      }
+    ]
+  }
+]

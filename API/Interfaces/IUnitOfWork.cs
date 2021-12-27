@@ -7,6 +7,8 @@ namespace API.Interfaces
         IUserRepository UserRepository { get; }
 
         ITourPackageRepository TourPackageRepository { get; }
+
+        IServiceRepository ServiceRepository { get; }
         
         IMessageRepository MessageRepository { get; }
 
