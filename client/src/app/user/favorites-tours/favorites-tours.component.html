@@ -26,7 +26,7 @@
     <th scope="row">{{tour.start | date}}</th>
     <th scope="row">{{tour.end | date}}</th>
     <th scope="row">
-      <button type="button" class="btn btn-outline-info btn-sm" routerLink="/trips/{{tour.id}}">Show</button>
+      <button type="button" class="btn btn-outline-info btn-sm" routerLink="/tours/{{tour.id}}">Show</button>
     </th>
     <th scope="row" style="width: 2%">
       <button class="btn btn-exit btn-sm" (click)="deleteTour(tour.id)">
