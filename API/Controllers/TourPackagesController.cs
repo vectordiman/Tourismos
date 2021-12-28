@@ -28,9 +28,9 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TripDto>>> GetTourPackages([FromQuery] PaginationParams paginationParams)
+        public async Task<ActionResult<IEnumerable<TripDto>>> GetTourPackages([FromQuery] TourParams tourParams)
         {
-            var packages = await _unitOfWork.TourPackageRepository.GetTourPackagesAsync(paginationParams);
+            var packages = await _unitOfWork.TourPackageRepository.GetTourPackagesAsync(tourParams);
             Response.AddPaginationHeader(packages.CurrentPage, packages.PageSize, packages.TotalCount, packages.TotalPages);
             return Ok(packages.ToArray());
         }

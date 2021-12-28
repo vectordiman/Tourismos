@@ -17,7 +17,7 @@ namespace API.Interfaces
 
         void DeletePackage(TourPackage package);
 
-        Task<PagedList<TripDto>> GetTourPackagesAsync(PaginationParams paginationParams);
+        Task<PagedList<TripDto>> GetTourPackagesAsync(TourParams tourParams);
         Task<IEnumerable<TourPackage>> GetHotTourPackagesAsync();
 
         Task<TourPackage> GetTourPackage(int id);

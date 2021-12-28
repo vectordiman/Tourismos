@@ -55,20 +55,34 @@ namespace API.Data
             return package.Photos;
         }
 
-        public async Task<PagedList<TripDto>> GetTourPackagesAsync(PaginationParams paginationParams)
+        public async Task<PagedList<TripDto>> GetTourPackagesAsync(TourParams tourParams)
         {
             var query = _context.TourPackages
                 .Include(p => p.Photos)
-                .ProjectTo<TripDto>(_mapper.ConfigurationProvider)
                 .AsQueryable();
-            
-            return await PagedList<TripDto>.CreateAsync(query, paginationParams.PageNumber, paginationParams.PageSize);
+
+            var start = tourParams.Start;
+            var end = tourParams.End;
+
+            query = query.Where(tp => tp.Start >= start && tp.End <= end);
+
+            query = tourParams.OrderBy switch
+            {
+                "price" => query.OrderByDescending(u => u.Price),
+                _ => query.OrderByDescending(u => u.Name)
+            };
+
+            return await PagedList<TripDto>.CreateAsync(
+                query.ProjectTo<TripDto>(_mapper.ConfigurationProvider).AsNoTracking(), tourParams.PageNumber,
+                tourParams.PageSize);
         }
+
         public async Task<IEnumerable<TourPackage>> GetHotTourPackagesAsync()
         {
-            return await _context.TourPackages.Include(p => p.Photos).OrderByDescending(tp => tp.Start).Take(5).ToListAsync();
+            return await _context.TourPackages.Include(p => p.Photos).OrderByDescending(tp => tp.Start).Take(5)
+                .ToListAsync();
         }
-        
+
         public void Update(TourPackage package)
         {
             _context.TourPackages.Update(package);
