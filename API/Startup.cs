@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using API.Extensions;
 using API.Middleware;
@@ -30,7 +31,10 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApplicationService(_config);
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(o => {
+                o.JsonSerializerOptions
+                .ReferenceHandler = ReferenceHandler.Preserve;
+            });
             services.AddCors();
             services.AddIdentityServices(_config);
             services.AddSignalR();
