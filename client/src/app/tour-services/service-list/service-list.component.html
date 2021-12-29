@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <h1>Services</h1>
+        </div>
+        <div class="col-sm-4">
+            <button routerLink='create' class="btn btn-outline-info float-right"><span class="fa fa-plus"></span> Create</button>
+        </div>
+    </div>
+    <hr style="display: block; border: 1px inset;" />
+    <div class="card-group">
+        <div class="col-sm-4" *ngFor="let service of services">
+            <app-service-card [service]="service"></app-service-card>
+        </div>
+        <!-- <div class="card">
+          <img src="https://picsum.photos/1920/1080?random=102" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Заголовок карточки</h5>
+            <p class="card-text">Это более широкая карточка с вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту. Этот контент немного длиннее.</p>
+            <p class="card-text"><small class="text-muted">Последнее обновление 3 мин. назад</small></p>
+          </div>
+        </div> -->
+    </div>
+</div>
+
+
+
+
+<!-- <div class="card mb-5">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="https://picsum.photos/1920/1080?random=101" class="img-fluid" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                    content. This content is a little bit longer.</p>
+                <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false"
+                    autocomplete="off">
+                    Single toggle
+                </button>
+            </div>
+        </div>
+    </div>
+</div> -->
