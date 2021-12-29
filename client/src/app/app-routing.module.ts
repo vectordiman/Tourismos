@@ -19,6 +19,9 @@ import {FavoritesToursComponent} from "./user/favorites-tours/favorites-tours.co
 import {ExpertPanelComponent} from "./expert/expert-panel/expert-panel.component";
 import {ExpertGuard} from "./_guards/expert.guard";
 import {MessagesComponent} from "./messages/messages.component";
+import { ServiceListComponent } from './tour-services/service-list/service-list.component';
+import { ServiceDetailComponent } from './tour-services/service-detail/service-detail.component';
+import { ServiceCreationComponent } from './expert/service-creation/service-creation.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -36,6 +39,16 @@ const routes: Routes = [
     children: [
       {path: 'tours', component: TourPackageListComponent},
       {path: 'tours/:id', component: TourPackageDetailComponent},
+    ]
+  },
+  {
+    path:'services',
+    runGuardsAndResolvers: 'always',
+    canActivate: [ExpertGuard],
+    children: [
+      {path: '', component: ServiceListComponent},
+      {path: 'create', component: ServiceCreationComponent},
+      {path: ':id', component: ServiceDetailComponent},
     ]
   },
   {path: 'register', component: RegisterComponent},
