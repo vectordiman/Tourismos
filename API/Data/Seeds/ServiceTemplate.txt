@@ -15,7 +15,7 @@
         Url: function(num){
           return 'https://picsum.photos/1920/1080?random=' + num.integer(1, 500);
         },
-        IsMain: true
+        IsMain: false
       }
     ]
   }
