@@ -10,5 +10,7 @@ namespace API.Interfaces
     {
         Task<IEnumerable<Service>> GetServices();
         Task<Service> GetService(int id);
+        Task<Service> CreateService(Service service);
+        Task<IEnumerable<Photo>> GetServicePhotos(int id);
     }
 }

@@ -43,6 +43,11 @@ namespace API.Helpers
 
             CreateMap<ExpertDto, AppUser>();
             CreateMap<PopularQuestion, PopularQuestionDto>();
+
+            CreateMap<Service, ServiceDto>()
+                .ForMember(dest => dest.PhotoUrl,
+                    opt => opt.MapFrom(src =>
+                        src.Photos.FirstOrDefault(x => x.IsMain).Url));
         }
     }
 }

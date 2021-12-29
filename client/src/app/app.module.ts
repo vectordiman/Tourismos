@@ -45,6 +45,10 @@ import { ExpertPanelComponent } from './expert/expert-panel/expert-panel.compone
 import { MessagesComponent } from './messages/messages.component';
 import { ExpertMessagesListComponent } from './admin/expert-messages-list/expert-messages-list.component';
 import { AdminMessagesListComponent } from './expert/admin-messages-list/admin-messages-list.component';
+import { ServiceCreationComponent } from './expert/service-creation/service-creation.component';
+import { ServiceDetailComponent } from './tour-services/service-detail/service-detail.component';
+import { ServiceListComponent } from './tour-services/service-list/service-list.component';
+import { ServiceCardComponent } from './tour-services/service-card/service-card.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +85,11 @@ import { AdminMessagesListComponent } from './expert/admin-messages-list/admin-m
     ExpertPanelComponent,
     MessagesComponent,
     ExpertMessagesListComponent,
-    AdminMessagesListComponent
+    AdminMessagesListComponent,
+    ServiceCreationComponent,
+    ServiceDetailComponent,
+    ServiceListComponent,
+    ServiceCardComponent
   ],
   imports: [
     BrowserModule,

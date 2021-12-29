@@ -22,11 +22,6 @@ namespace API.Extensions
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<LogUserActivity>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
-            
-            services.AddMvc().AddJsonOptions(o => {
-                o.JsonSerializerOptions
-                .ReferenceHandler = ReferenceHandler.Preserve;
-            });
 
             services.AddDbContext<DataContext>(options =>
             {
