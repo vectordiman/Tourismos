@@ -14,8 +14,6 @@ export class TourPackageListComponent implements OnInit {
   packages: TourPackage[] = [];
   pagination!: Pagination;
   tourParams!: TourParams;
-  pageNumber = 1;
-  pageSize = 9;
   loading = false;
 
   constructor(private tourPackageService: TourPackageService, private toastr: ToastrService) {
@@ -33,6 +31,7 @@ export class TourPackageListComponent implements OnInit {
       this.packages = response.result;
       this.pagination = response.pagination;
       this.loading = false;
+      console.log(response)
     }, error =>  {
       this.toastr.error('Bad request', '400')
     });
@@ -44,8 +43,7 @@ export class TourPackageListComponent implements OnInit {
   }
 
   pageChanged(event: any) {
-    if (this.pageNumber !== event.page) {
-      this.pageNumber = event.page;
+    if (this.tourParams.pageNumber !== event.page) {
       this.tourParams.pageNumber = event.page;
       this.getTourPackages();
     }
