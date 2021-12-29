@@ -35,7 +35,7 @@
                 <div class="input-group mb-3">
                     <select class="form-select" name="expertName" aria-describedby="btn-expert-info"
                         [formControl]='$any(editTourForm).controls["expertName"]'>
-                        <option *ngFor="let expert of experts" value="{{expert?.username}}">{{expert?.username}}</option>
+                        <option *ngFor="let expert of experts" value="{{expert?.username}}">{{expert?.username | titlecase}}</option>
                     </select>
                     <button class="btn btn-primary" (click)="openExpertModal()" type="button" id="btn-expert-info">Show details</button>
                 </div>

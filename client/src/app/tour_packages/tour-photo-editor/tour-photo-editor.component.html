@@ -12,14 +12,14 @@
             <div class="col-2" *ngFor="let photo of tour.photos">
                 <img src="{{photo.url}}" alt="{{photo.url}}" class="img-thumbnail img-thumbnail p-1">
                 <div class="text-center">
-                    <button 
-                        class="btn btn-sm" 
+                    <button
+                        class="btn btn-sm"
                         (click)="setMainPhoto(photo)"
                         [disabled]="photo.isMain"
                         [ngClass]='photo.isMain ? "btn-success active" : "btn-outline-success"'>
                         Main
                     </button>
-                    <button 
+                    <button
                         class="btn btn-danger btn-sm"
                         [disabled]="photo.isMain"
                         (click)="deletePhoto(photo)"><i class="fa fa-trash"></i></button>
@@ -30,7 +30,7 @@
 </div>
 
 <div class="row mt-3">
- 
+
     <div class="col-md-3">
 
         <h3>Add photos</h3>
