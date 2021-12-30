@@ -11,7 +11,7 @@ export class RolesModalComponent implements OnInit {
   @Input() updateSelectedRoles = new EventEmitter();
   user!: User;
   roles!: any[];
-  
+
   constructor(public bsModalRef: BsModalRef) { }
 
   ngOnInit(): void {
@@ -20,6 +20,13 @@ export class RolesModalComponent implements OnInit {
   updateRoles(): void {
     this.updateSelectedRoles.emit(this.roles);
     this.bsModalRef.hide();
+  }
+
+  changeRole(role: any) {
+    for (let item of this.roles) {
+      item.checked = false;
+    }
+    role.checked = !role.checked;
   }
 
 }

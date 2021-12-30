@@ -10,3 +10,37 @@ img.img-thumbnail img:not(.img-thumbnail-main) {
 input[type=file] {
     color: transparent;
 }
+
+.btn {
+  box-shadow: none;
+}
+
+.btn-file {
+  height: 40px;
+  width: 50px;
+}
+
+.progress {
+  height: 40px;
+  margin-top: 6px;
+}
+
+.btn-file-photo {
+  background: none;
+}
+
+.card-img-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.card-img-wrapper:hover .member-photo {
+  top: 5%;
+  left: 3%;
+}
+
+.member-photo {
+  position: absolute;
+  margin-right: auto;
+  margin-left: auto;
+}
