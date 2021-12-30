@@ -69,5 +69,5 @@ export class UserManagementComponent implements OnInit {
       }
     });
     return roles;
-  } 
+  }
 }

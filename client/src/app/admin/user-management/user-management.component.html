@@ -1,16 +1,27 @@
-<div class="row">
-    <table class="table">
-        <tr>
-            <th style="width: 30%"></th>
-            <th style="width: 40%"></th>
-            <th style="width: 30%"></th>
-        </tr>
-        <tr *ngFor="let user of users">
-            <td>{{user?.username}}</td>
-            <td>{{user?.role}}</td>
-            <td><button (click)="openRolesModal(user!)" class="btn btn-info">
-                Edit role
-            </button></td>
-        </tr>
-    </table>
+<div class="row mt-2">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col" style="width: 30%">User</th>
+      <th scope="col" style="width: 30%">Role</th>
+      <th scope="col" style="width: 2%"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <th scope="row"><img
+        class="img-circle rounded-circle mr-2"
+        src="{{user?.photoUrl || './assets/user.png'}}"
+        alt="{{user?.username}}">
+        <strong>{{user?.username | titlecase}}</strong></th>
+      <!--      <th scope="row">{{user?.username | titlecase}}</th>-->
+      <th scope="row">{{user?.role}}</th>
+      <th scope="row">
+        <button type="button" class="btn btn-outline-info btn-sm" (click)="openRolesModal(user!)"><i
+          class="fa fa-edit mr-1"></i>Edit role
+        </button>
+      </th>
+    </tr>
+    </tbody>
+  </table>
 </div>

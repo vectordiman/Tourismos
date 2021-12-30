@@ -23,6 +23,7 @@ namespace API.Controllers
         public async Task<ActionResult> GetUsersWithRoles()
         {
             var users = await _userManager.Users
+                .Include(p => p.Photos)
                 .Include(r => r.UserRoles)
                 .ThenInclude(r => r.Role)
                 .OrderBy(u => u.UserName)
@@ -30,7 +31,8 @@ namespace API.Controllers
                 {
                     u.Id,
                     Username = u.UserName,
-                    Role = u.UserRoles.Select(r => r.Role.Name).SingleOrDefault()
+                    Role = u.UserRoles.Select(r => r.Role.Name).SingleOrDefault(),
+                    PhotoUrl = u.Photos.Select(p => p.Url).SingleOrDefault()
                 })
                 .ToListAsync();
                  
